@@ -6,7 +6,8 @@ const studentSchema = new mongoose.Schema({
     studentId : {
         type : String,
         required : true,
-        lowercase : true
+        lowercase : true,
+        unique:true,
     },
     course : {
         type : String,
@@ -24,8 +25,14 @@ const studentSchema = new mongoose.Schema({
         requied : true
     },
     bookHistory :[{
+        book : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "BookInstance"
+        },
+        IssueDate : {
+            type : Date,
+            default : Date.now()
+        }
     }]
     // ,
     // totalFine : {
@@ -48,4 +55,5 @@ studentSchema.methods.generateAccessToken = function(){
 studentSchema.methods.isPasswordCorrect = function(password){
     return userSchema.statics.isPasswordCorrect.call(this, password);
 }
+
 export const Student = mongoose.model("Student", studentSchema);

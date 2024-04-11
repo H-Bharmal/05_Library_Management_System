@@ -8,7 +8,8 @@ import {Counter} from "./counter.model.js"
 const bookSchema = new mongoose.Schema({
     bookNumber :{
         type : Number,
-        default : 0
+        default : 0,
+        unique :true
     },
     title : {
         type : String,

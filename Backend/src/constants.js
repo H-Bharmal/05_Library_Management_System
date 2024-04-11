@@ -1,4 +1,4 @@
-const maxIssueAllowed = 4 ;
+const maxIssueAllowedPerBook = 4 ;
 const maxDaysBeforeRenew = 20 ;
-
-export {maxIssueAllowed, maxDaysBeforeRenew}
+const maxNumberOfBooksAllowed = 4 ;
+export {maxIssueAllowedPerBook, maxDaysBeforeRenew, maxNumberOfBooksAllowed}

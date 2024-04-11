@@ -99,6 +99,7 @@ const addBookInstance = asyncHandler( async (req, res)=>{
         $or : [{title}, {isbn10}, {isbn13}]
     })
 
+    //TODO : Instead of giving a error, try to register a new book automatically
     if(!registeredBook) throw new ApiError("No such Book registered in the database");
 
     const book = await BookInstance.create({
@@ -114,4 +115,6 @@ const addBookInstance = asyncHandler( async (req, res)=>{
     res.status(200)
     .json(new ApiResponse(200, book, "Book Instance registered successfully"));
 })
+
+
 export {registerBookByISBN, registerBookManually, addBookInstance}
