@@ -35,17 +35,16 @@ const registerBookByISBN = asyncHandler(async (req, res)=>{
     })
     if (!responseData)
         throw new ApiError(400, "Book Not Found, Try registering manually")
-
     const items = responseData.items[0] ;
     const volumeInfo = items.volumeInfo ;
     const {title, authors, publisher, description, categories} = volumeInfo ;
     const pageCount = volumeInfo.readingModes.pageCount ;
-    const new_isbn13 = volumeInfo.industryIdentifiers[0].identifier ;
-    const new_isbn10 = volumeInfo.industryIdentifiers[1].identifier;
+    const new_isbn13 = volumeInfo.industryIdentifiers[0]?.identifier || isbn13;
+    const new_isbn10 = volumeInfo.industryIdentifiers[1]?.identifier || isbn10;
     const thumbnail = volumeInfo.imageLinks.thumbnail ;
     const previewLink = volumeInfo.previewLink ;
-    console.log(volumeInfo.industryIdentifiers[1]);
-    console.log(volumeInfo.industryIdentifiers[0]);
+    // console.log(volumeInfo.industryIdentifiers[1]);
+    // console.log(volumeInfo.industryIdentifiers[0]);
     const existedBook = await BookDetails.findOne({
         $or : [{title, new_isbn10, new_isbn13}]
     });
@@ -89,7 +88,7 @@ const registerBookManually = asyncHandler( async (req, res)=>{
 
 const addBookInstance = asyncHandler( async (req, res)=>{
     // Title or ISBN Number
-    const title = req.body.title.toLowerCase();
+    const title = req.body.title?.toLowerCase();
     const isbn10 = req.body.isbn10;
     const isbn13 = req.body.isbn13;
     // const edition = req.body.edition ;

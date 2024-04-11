@@ -70,9 +70,9 @@ const generateAccessAndRefreshToken = async (studentID)=>{
 const loginStudent = asyncHandler( async (req, res, next)=>{
     const {email, mobileNumber, studentId, password} = req.body ;
     console.log(req.body);
-    if(req.cookies?.accessToken){
-        throw new ApiError(300, "Student already logged In !");
-    }
+    // if(req.cookies?.accessToken){
+    //     throw new ApiError(300, "Student already logged In !");
+    // }
     if(!(email || mobileNumber || studentId)){
         throw new ApiError(400, "Provide email/mobilenumber/studentid");
     }
