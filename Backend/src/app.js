@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import { studentRouter } from "./routes/student.route.js";
 import cookieParser from "cookie-parser"
 import { adminRouter } from "./routes/admin.route.js";
@@ -11,6 +12,11 @@ app.use(express.json({
 }))
 
 app.use(cookieParser());
+
+app.use(cors({
+    origin: 'http://localhost:5500',
+    credentials: true
+  }))
 
 app.use("/api/v1/student",studentRouter);
 app.use("/api/v1/admin",adminRouter);

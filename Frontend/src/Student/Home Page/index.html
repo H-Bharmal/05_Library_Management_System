@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student DashBoard</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/tiles.css">
+    <link rel="stylesheet" href="styles/booklist.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <div class="navigation-items">
+            <a href="index.html" class="active">Home</a>
+            <a href="index.html">My Books</a>
+            <a href="index.html">Fine Payments</a>
+            <a href="index.html">Request Book</a>
+            <a href="index.html">Book History</a>
+            <div class="searchBox">
+                <input type="text" placeholder="Search Books">
+                <button>Search</button>
+            </div>
+        </div>
+        <div class="profile">
+            <img src="./Images/user.png" alt="profile image">
+        </div>
+    </div>
+    <div class="content">
+        <h1>Welcome, <label id="username">username</label></h1>
+        <div class="info">
+            <div class="tiles">
+                <div class="totalBooks"> Total Books Issued</div>
+                <div class="Upcoming Renew Date">Upcoming Renew Date</div>
+                <div class="Fine Pending">Total Fine Pending</div>
+            </div>
+            <div class="bookList">
+                <table class="books">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Book Number</th>
+                            <th>Date Issued</th>
+                            <th>Fine Pending</th>
+                            <th>Pay Fine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="book1">
+                            <td>Linux Kernel Development</td>
+                            <td>Book Number</td>
+                            <td>Date Issued</td>
+                            <td>Fine Pending</td>
+                            <td><button>Pay Fine</button></td>
+                        </tr>
+                        <tr id="book2">
+                            <td>Who Moved My Cheese</td>
+                            <td>Book Number</td>
+                            <td>Date Issued</td>
+                            <td>Fine Pending</td>
+                            <td><button>Pay Fine</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/script.js"></script>
+</html>

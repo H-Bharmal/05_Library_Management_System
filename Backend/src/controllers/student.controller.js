@@ -73,7 +73,7 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
     // if(req.cookies?.accessToken){
     //     throw new ApiError(300, "Student already logged In !");
     // }
-    if(!(email || mobileNumber || studentId)){
+    if(!email && !mobileNumber && !studentId){
         throw new ApiError(400, "Provide email/mobilenumber/studentid");
     }
     if(!password){
@@ -129,6 +129,5 @@ const logoutStudent = asyncHandler(async(req, res, next)=>{
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "Logout Successful"))
 })
-
 
 export {registerStudent, loginStudent, logoutStudent}

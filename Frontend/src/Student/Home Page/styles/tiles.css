@@ -1,0 +1,25 @@
+.content {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* Info styles */
+.info {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tiles {
+    display: flex;
+    flex-direction: column;
+}
+
+.tiles div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}

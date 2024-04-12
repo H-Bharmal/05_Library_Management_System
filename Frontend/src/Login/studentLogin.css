@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2 {
+    margin: 0 0 20px;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+
+.user-box,
+.password-box {
+    margin-bottom: 25px;
+    flex : 1 ;
+    display: flex;
+}
+
+input[type="text"],
+input[type="password"] {
+    flex: 1;
+    /* width : 100% ; */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: #eaeaea;
+}
+.loginbtn{
+    display: flex;
+}
+.loginbtn button {
+    /* width: 100%; */
+    flex : 1 ;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+
+.loginbtn button:hover {
+    background-color: #0056b3;
+}
+
+.link {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+.container{
+    width : 200px;
+}
+.link{
+    flex-direction: column;
+}
+}

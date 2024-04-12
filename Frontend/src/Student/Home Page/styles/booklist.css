@@ -1,0 +1,45 @@
+
+/* Book list styles */
+.bookList {
+    flex: 0.9;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.books {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.books th, .books td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.books th {
+    background-color: #f2f2f2;
+}
+
+.books tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.books tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* Button styles */
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
