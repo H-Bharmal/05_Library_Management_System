@@ -2,6 +2,9 @@
     margin-top: 20px;
     padding: 20px;
 }
+.content h1{
+    text-transform: capitalize;
+}
 
 /* Info styles */
 .info {
@@ -22,4 +25,15 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.tiles div label{
+    line-break: normal;
+    /* display: block; */
+    font-weight: 400;
+}
+.tiles div label::before {
+    content: "\A\A"; /* This inserts a line break */
+    white-space: pre; /* This ensures the line break is respected */
 }

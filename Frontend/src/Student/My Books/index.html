@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student - DashBoard</title>
+    <title>Student - My Books</title>
     <link rel="stylesheet" href="../nav.css">
-    <link rel="stylesheet" href="styles/tiles.css">
     <link rel="stylesheet" href="../booklist.css">
 </head>
-
 <body>
     <div class="topnav">
         <div class="navigation-items">
-            <a href="index.html" class="active">Home</a>
-            <a href="../My Books/index.html">My Books</a>
+            <a href="../Home Page/index.html">Home</a>
+            <a href="index.html" class="active">My Books</a>
             <a href="index.html">Fine Payments</a>
             <a href="index.html">Request Book</a>
             <a href="index.html">Book History</a>
@@ -27,42 +24,40 @@
             <img src="../Images/user.png" alt="profile image">
         </div>
     </div>
+
+
     <div class="content">
-        <h1>Welcome, <label id="username"></label></h1>
-        <div class="info">
-            <div class="tiles">
-                <div class="totalBooks"> Total Books Issued<label id="totalBook">NA</label></div>
-                <div class="UpcomingRenewDate">Upcoming Renew Date<label id="renewDate">NA</label></div>
-                <div class="FinePending">Total Fine Pending<label id="fine">NA</label> &#x20B9</div>
-            </div>
-            <div class="bookList">
-                <table class="books">
+        <button type="button" class="collapsible"><h5>Books currently issued to you</h5></button>
+        <div class="currentActiveBooks">
+            <div class="currentBooks bookList collapsible-content">
+                <table id="currentBooksTable" class="books">
                     <thead>
                         <tr>
                             <th>Book Title</th>
+                            <th>Book Cover</th>
+                            <th>Author(s)</th>
+                            <th>Publisher</th>
                             <th>Book Number</th>
                             <th>Date Issued</th>
                             <th>Issue Count</th>
                             <th>Fine Pending</th>
-                            <th>Status</th>
                             <th>Pay Fine</th>
                         </tr>
                     </thead>
                     <tbody id="bookListTableBody">
-                        <!-- <tr id="book1">
-                            <td>Linux Kernel Development</td>
-                            <td>Book Number</td>
-                            <td>Date Issued</td>
-                            <td>Fine Pending</td>
-                            <td>Status</td>
-                            <td><button>Pay Fine</button></td>
-                        </tr>
-                    -->
-                    </tbody>
+                    <tbody>
                 </table>
             </div>
         </div>
+        <div id="returnedButFinePending" class="books">
+            <table class="pendingfine">
+
+            </table>
+        </div>
+        <div id="requestedBooks" class="books">
+
+        </div>
     </div>
 </body>
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 </html>

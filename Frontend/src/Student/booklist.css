@@ -9,13 +9,16 @@
 
 .books {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
 }
 
 .books th, .books td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+.books td img{
+    width: 100px;
 }
 
 .books th {
@@ -31,7 +34,7 @@
 }
 
 /* Button styles */
-button {
+.books button {
     padding: 8px 16px;
     border: none;
     background-color: #4CAF50;
@@ -40,6 +43,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.books button:hover {
     background-color: #45a049;
 }

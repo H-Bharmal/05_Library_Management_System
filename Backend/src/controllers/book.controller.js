@@ -115,5 +115,71 @@ const addBookInstance = asyncHandler( async (req, res)=>{
     .json(new ApiResponse(200, book, "Book Instance registered successfully"));
 })
 
+// const getBookDetail = asyncHandler(async(req, res)=>{
+//     const {title, bookNumber, isbn10, isbn13} = req.body ;
+//     if(!title && !bookNumber && !isbn10 && !isbn13)
+//         throw new ApiError(400,"No valid Parameter given to find book");
 
-export {registerBookByISBN, registerBookManually, addBookInstance}
+//     const book = await BookInstance.findOne({
+//         $or : [
+//             {title : title?.toUpperCase()},
+//             {bookNumber},
+//             {isbn10},
+//             {isbn13}
+//         ]
+//     })
+
+//     if(!book) throw new ApiError(404,"No such Book Registered");
+
+//     return res.status(200)
+//     .json(new ApiResponse(200, book, "Book Detail Fetched"))
+// })
+
+const getBookDetailByBookInstanceId = asyncHandler(async(req, res)=>{
+    const BookInstanceId = req.body.bookInstance ;
+    console.log("Getting book details");
+    // console.log(req.body);
+    // console.log(BookInstanceId);
+    if(!BookInstanceId) throw new ApiError(400,"Book Instance Invalid")
+
+    const book = await BookInstance.findById(BookInstanceId);
+
+    if(!book) throw new ApiError(400,"No such book Found");
+
+    return res.status(200)
+    .json(new ApiResponse(200,book,"Book Details Fetched Successfully!"));
+})
+
+// dont need this function
+const getBookDetailsByISBN = asyncHandler(async (req, res)=>{
+    const {isbn10, isbn13} = req.body ;
+
+    if(!isbn10 && !isbn13) throw new ApiError(400, "Invalid Parameters passed");
+
+    const bookDetails = await BookDetails.findOne({
+        $or : [{isbn10}, {isbn13}]
+    });
+
+    if(!bookDetails) throw new ApiError(404, "No such book found !");
+
+    return res.status(200)
+    .json(new ApiResponse(200, bookDetails, "Book Details fetched!"))
+})
+
+const getEntireBookDetailsByBookInstance = asyncHandler(async (req,res)=>{
+    const bookInstanceId = req.body.bookInstance ;
+    console.log("Getting book details");
+    // console.log(req.body);
+    console.log(bookInstanceId);
+    if(!bookInstanceId) throw new ApiError(400,"Book Instance Invalid")
+
+    const bookDetails = await BookInstance.findById(bookInstanceId).populate("bookDetails")
+
+    if(!bookDetails) throw new ApiError(404,"No such book Found!");
+    console.log(bookDetails);
+    res.status(200)
+    .json(new ApiResponse(200,bookDetails, "Book Details found !"))
+})
+export {registerBookByISBN, registerBookManually, addBookInstance, 
+    getBookDetailByBookInstanceId, getBookDetailsByISBN,
+    getEntireBookDetailsByBookInstance}
