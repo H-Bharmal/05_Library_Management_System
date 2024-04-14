@@ -2,8 +2,8 @@
     
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "Backend/src/index.js"
+            "src": "/vercel/.*",
+            "dest": "Backend/src/app.js"
         }
     ]
 }
