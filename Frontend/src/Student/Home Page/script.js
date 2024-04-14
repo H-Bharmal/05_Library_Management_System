@@ -1,5 +1,6 @@
+const API_DOMAIN="https://zero5-library-management-system.onrender.com";
 async function getUser() {
-    const url = "http://localhost:8000/api/v1/student/getStudentDetails";
+    const url = `${API_DOMAIN}/api/v1/student/getStudentDetails`;
     const res = await fetch(url,
         {
             method: 'GET',
@@ -9,14 +10,14 @@ async function getUser() {
             // body: JSON.stringify(data),
             credentials: 'include'
         })
+    console.log(res);
     const resJson = await res.json();
     const data = resJson.data
-    console.log(data);
 
     return data;
 }
 async function getBooksWithFine() {
-    const url = "http://localhost:8000/api/v1/student/booksWithFineStudent";
+    const url = `${API_DOMAIN}/api/v1/student/booksWithFineStudent`;
     const response = await fetch(url,
         {
             method: "GET",
@@ -32,7 +33,7 @@ async function getBooksWithFine() {
 }
 
 async function getBookDetail(bookInstanceId){
-    const url = "http://localhost:8000/api/v1/book/getBookDetailByBookInstanceId";
+    const url = `${API_DOMAIN}/api/v1/book/getBookDetailByBookInstanceId`;
     console.log(bookInstanceId);
     const response = await fetch(url,
         {

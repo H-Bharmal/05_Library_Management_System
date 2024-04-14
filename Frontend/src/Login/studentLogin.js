@@ -1,9 +1,11 @@
 const loginBtn = document.querySelector(".loginbtn button")
 const loginId = document.querySelector(".user-box input");
 const password = document.querySelector(".password-box input");
+
 console.log(loginBtn);
 async function auth() {
-    const url = `/api/v1/student/login`
+    const API_DOMAIN="https://zero5-library-management-system.onrender.com";
+    const url = `${API_DOMAIN}/api/v1/student/login`
 
     data = {
         studentId : loginId.value,

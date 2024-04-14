@@ -14,8 +14,9 @@ app.use(express.json({
 app.use(cookieParser());
 
 app.use(cors({
-    origin: 'http://localhost:5500',
-    credentials: true
+    origin: '*',
+    credentials: true,
+    allowedHeaders: ['Content-Type']
   }))
 
 app.use("/api/v1/student",studentRouter);
