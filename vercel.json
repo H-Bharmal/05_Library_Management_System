@@ -1,0 +1,14 @@
+{
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "Frontend/src/Login/studentLogin.html"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "index.js"
+        }
+    ]
+}
