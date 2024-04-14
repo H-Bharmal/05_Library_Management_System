@@ -223,6 +223,7 @@ function renderRequestBook(data){
 window.onload = async function(){
     await pageRender();
     addEventListeners();
+    document.getElementById("RequestBook").classList.add("active");
     document.getElementById("reqeust-form")
     .addEventListener('submit',async(e)=> {
         e.preventDefault();
@@ -259,4 +260,3 @@ function activepage() {
         content[i].classList.toggle("tabactive");
     }
 }
-document.getElementById("RequestBook").classList.add("active");
