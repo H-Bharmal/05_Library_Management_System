@@ -22,4 +22,8 @@ app.use("/api/v1/student",studentRouter);
 app.use("/api/v1/admin",adminRouter);
 app.use("/api/v1/book",bookRouter);
 
+app.get("/api/v1",(req,res)=>{
+  res.status(200).
+  json({data:"Api working"})
+})
 export {app}
