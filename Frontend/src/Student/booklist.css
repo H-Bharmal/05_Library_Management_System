@@ -11,7 +11,10 @@
     width: 100%;
     border-collapse: separate;
 }
-
+.books thead{
+    position: sticky;
+    top :0;
+}
 .books th, .books td {
     padding: 12px 15px;
     text-align: left;
@@ -19,18 +22,44 @@
 }
 .books td img{
     width: 100px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .books th {
     background-color: #f2f2f2;
 }
-
-.books tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+.books tbody p{
+    overflow-y: auto;
+    max-height: 150px;
+    padding:20px
+}
+.books tbody p:hover{
+    /* overflow-y:none; */
+    /* max-height: 300px; */
+    overflow-y: scroll; /* Prevents content from overflowing */
+    max-height: 150px; /* Restricts the height to avoid excessive expansion */
+    border-radius: 5px;
+    background-color: rgb(255, 247, 247);
+    font-size: 10px;
+    transform: scale(1.8); /* Slightly increase the size on hover */
+    transition: transform 0.5s ease, max-height 0.5s ease;
+}
+.books tbody p::-webkit-scrollbar {
+    width: 2px;
+    background: transparent;
 }
 
+.books tbody tr:nth-child(even) {
+    background-color: #f7f6f6;
+}
+.books tbody tr{
+    border-radius: 3px;
+}
 .books tbody tr:hover {
-    background-color: #ddd;
+    /* background-color: #ddd; */
+    transform: scale(1.005);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Button styles */

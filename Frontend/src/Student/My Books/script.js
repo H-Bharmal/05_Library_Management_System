@@ -1,45 +1,45 @@
-async function getIssuedBooks(){
+async function getIssuedBooks() {
     const url = "http://localhost:8000/api/v1/student/booksWithFineStudent";
     const response = await fetch(
         url,
-        { 
-            method : "GET",
-            credentials : "include",
+        {
+            method: "GET",
+            credentials: "include",
         }
     )
     const responseJson = await response.json()
-    return responseJson.data ;
+    return responseJson.data;
 }
 
-async function getEntireBookDetailsByBookInstance(bookInstance){
+async function getEntireBookDetailsByBookInstance(bookInstance) {
     const url = "http://localhost:8000/api/v1/book/getEntireBookDetailsByBookInstance";
     const response = await fetch(url,
         {
-            method : "POST",
-            headers:{
-                "Content-Type" : "application/json"
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body : JSON.stringify({
-                bookInstance : bookInstance
+            body: JSON.stringify({
+                bookInstance: bookInstance
             })
         })
     const responseJson = await response.json();
     // console.log(responseJson);
-    return responseJson.data ;
+    return responseJson.data;
 }
-function generateBookRow(entireBookDetails, issueDetails, tableBody){
+function generateBookRow(entireBookDetails, issueDetails, tableBody) {
     const bookDetails = entireBookDetails?.bookDetails;
 
     const row = document.createElement('tr');
     const BookTitle = document.createElement("td");
     const bookLink = document.createElement("a");
-    bookLink.href = bookDetails?.previewLink ;
+    bookLink.href = bookDetails?.previewLink;
     bookLink.innerText = bookDetails?.title;
     BookTitle.appendChild(bookLink);
 
     const BookCover = document.createElement("td");
     const bookCoverImage = document.createElement("img");
-    bookCoverImage.src = bookDetails.thumbnail ;
+    bookCoverImage.src = bookDetails.thumbnail;
     BookCover.appendChild(bookCoverImage);
 
     const Author = document.createElement("td");
@@ -49,14 +49,14 @@ function generateBookRow(entireBookDetails, issueDetails, tableBody){
     BookNumber.innerHTML = entireBookDetails?.bookNumber;
 
     const DateIssued = document.createElement("td");
-    DateIssued.innerText = (new Date(issueDetails.updatedAt)).toLocaleDateString("en-GB") ;
+    DateIssued.innerText = (new Date(issueDetails.updatedAt)).toLocaleDateString("en-GB");
 
     const IssueCount = document.createElement("td");
-    IssueCount.innerText = issueDetails.issueCount ;
+    IssueCount.innerText = issueDetails.issueCount;
 
     const FinePending = document.createElement("td");
-    FinePending.innerText = issueDetails.fine ;
-    
+    FinePending.innerText = issueDetails.fine;
+
     const Publisher = document.createElement("td");
     Publisher.innerText = bookDetails?.publisher?.toUpperCase();
 
@@ -77,34 +77,51 @@ function generateBookRow(entireBookDetails, issueDetails, tableBody){
 
     tableBody.appendChild(row);
 }
-async function pageRender(){
-    const tableBody = document.querySelector("#bookListTableBody")
+async function pageRender() {
     const allBookInstance = (await getIssuedBooks())?.books;
     // console.log(allBookInstance);   
+    // TODO: Pending to make it work for active, pending fine, requested to add in library
+
+    const tableBodyIssuedBooks = document.querySelector("#bookListTableBodyCurrentIssuedBooks")
+    const tableBodyReturnedBooks = document.querySelector("#bookListTableBodyPendingFine")
     allBookInstance.forEach(async (issue) => {
-        // console.log(issue);
-        const bookDetail = await getEntireBookDetailsByBookInstance(issue.book)
-        // console.log(bookDetail);
         
-        generateBookRow(bookDetail, issue,tableBody)
+        const bookDetail = await getEntireBookDetailsByBookInstance(issue.book)
+        
+        if(issue.bookStatus === "Active"){
+            generateBookRow(bookDetail, issue, tableBodyIssuedBooks)
+        }
+        else{
+            generateBookRow(bookDetail, issue, tableBodyReturnedBooks)
+        }
+
+
     });
 }
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
+function addEventListeners(){
+    let coll = document.querySelectorAll(".collapsible");
+    console.log(coll.length);
+    let i;
+    for (i = 0; i < coll.length; i++) {
+        console.log("Event listener added");
+        coll[i].addEventListener("click", function () {
+            console.log("button clicekd");
+            this.classList.toggle("collapse-active");
+            var content = this.nextElementSibling;
+            console.log(content);
+            if (content.style.display === "inherit") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "inherit";
+            }
+        });
     }
-  });
 }
 
-window.onload = async function(){
+window.onload = async function () {
     await pageRender();
+    document.getElementById("MyBooks").classList.add("active");
+    console.log("Page Rendering done");
+    addEventListeners();
 }

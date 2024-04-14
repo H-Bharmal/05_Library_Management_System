@@ -4,58 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student - My Books</title>
-    <link rel="stylesheet" href="../nav.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../booklist.css">
 </head>
 <body>
-    <div class="topnav">
-        <div class="navigation-items">
-            <a href="../Home Page/index.html">Home</a>
-            <a href="index.html" class="active">My Books</a>
-            <a href="index.html">Fine Payments</a>
-            <a href="index.html">Request Book</a>
-            <a href="index.html">Book History</a>
-            <div class="searchBox">
-                <input type="text" placeholder="Search Books">
-                <button>Search</button>
-            </div>
-        </div>
-        <div class="profile">
-            <img src="../Images/user.png" alt="profile image">
-        </div>
-    </div>
+    <div id="navbar-placeholder"></div>
+    <script src="../navbar/script.js"></script>
 
 
     <div class="content">
-        <button type="button" class="collapsible"><h5>Books currently issued to you</h5></button>
-        <div class="currentActiveBooks">
-            <div class="currentBooks bookList collapsible-content">
-                <table id="currentBooksTable" class="books">
+        <div class="collapse">
+            <button type="button" class="collapsible">Books currently issued to you</button>
+            <div class="currentActiveBooks collapse-content">
+                <div class="currentBooks bookList">
+                    <table id="currentBooksTable" class="books">
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Book Cover</th>
+                                <th>Author(s)</th>
+                                <th>Publisher</th>
+                                <th>Book Number</th>
+                                <th>Date Issued</th>
+                                <th>Issue Count</th>
+                                <th>Fine Pending</th>
+                                <th>Pay Fine</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookListTableBodyCurrentIssuedBooks">
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" class="collapsible">Books Returned but Fine Pending</button>
+            <div id="returnedButFinePending" class="books collapse-content">
+                <div class="bookList">
+                    <table class="pendingfine books">
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Book Cover</th>
+                                <th>Author(s)</th>
+                                <th>Publisher</th>
+                                <th>Book Number</th>
+                                <th>Date Issued</th>
+                                <th>Issue Count</th>
+                                <th>Fine Pending</th>
+                                <th>Pay Fine</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookListTableBodyPendingFine">
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 
+            <button type="button" class="collapsible">Books Requested By You</button>
+            <div id="requestedBooks" class="bookList collapse-content">
+                <table class="requestedBooksTable books">
                     <thead>
                         <tr>
                             <th>Book Title</th>
                             <th>Book Cover</th>
                             <th>Author(s)</th>
                             <th>Publisher</th>
-                            <th>Book Number</th>
-                            <th>Date Issued</th>
-                            <th>Issue Count</th>
-                            <th>Fine Pending</th>
-                            <th>Pay Fine</th>
+                            <th>isbn10</th>
+                            <th>isbn13</th>
+                            <th>Categories</th>
+                            <th>Page Count</th>
+                            <th style="overflow:auto; max-height: 100px;">Description</th>
+                            
                         </tr>
                     </thead>
-                    <tbody id="bookListTableBody">
+                    <tbody id="bookListTableBodyRequestedBook">
                     <tbody>
                 </table>
             </div>
-        </div>
-        <div id="returnedButFinePending" class="books">
-            <table class="pendingfine">
-
-            </table>
-        </div>
-        <div id="requestedBooks" class="books">
-
+            -->
         </div>
     </div>
 </body>

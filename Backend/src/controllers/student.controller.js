@@ -130,4 +130,32 @@ const logoutStudent = asyncHandler(async(req, res, next)=>{
     .json(new ApiResponse(200, {}, "Logout Successful"))
 })
 
-export {registerStudent, loginStudent, logoutStudent}
+//  Functions used for frontend rendering
+const getStudentDetails = asyncHandler( async(req, res, next)=>{
+    const student = req.student ;
+    console.log("Dashboard renderer called.");
+    res.status(200)
+    .json(new ApiResponse(200,student,"Student fetched !"));
+})
+
+const getStudentBookHistory = asyncHandler( async(req, res)=>{
+
+    let student = req.student ;
+    if(req.admin){
+        const studentId = req.body.studentId ;
+        const email = req.body.email ;
+        let mobileNumber = req.body.mobileNumber ;
+        if(typeof mobileNumber === "string") mobileNumber=0;
+        
+        student = await Student.findOne({
+            $or :[ {studentId}, {email}, {mobileNumber}]
+        })
+    }
+
+    if(!student) throw new ApiError(400,"No such Student Found !");
+
+    return res.status(200)
+    .json(new ApiResponse(200,student?.bookHistory, "Book History Fetched"))
+})
+
+export {registerStudent, loginStudent, logoutStudent, getStudentDetails, getStudentBookHistory, generateAccessAndRefreshToken}

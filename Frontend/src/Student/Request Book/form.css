@@ -1,0 +1,83 @@
+.request-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form{
+    height: 100%;
+}
+.form form{
+    display : flex ;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    max-width: 300px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.form input{
+    background-color: rgb(232, 233, 233);
+    outline: none;
+    padding: 10px 16px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    flex:1;
+    font-size: 18px;
+}
+.form button{
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-size: 18px;
+    flex:1;
+}
+.form button:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: rgb(221, 145, 4);
+}
+
+
+.acknowledgeBookRequest{
+    margin-left: 50px;
+    padding: 20px;
+    display: none;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 400px;
+    margin:0 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-transform: capitalize;
+}
+.right{
+    margin:0 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    align-content: space-between;
+    
+}
+
+.rightUpper{
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+}
+.right .description{
+    margin-top: 30px;
+}
+.right .description p{
+    padding: 20px;
+}

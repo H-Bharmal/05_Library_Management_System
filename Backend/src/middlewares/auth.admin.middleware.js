@@ -12,7 +12,7 @@ const verifyJWTAdmin =asyncHandler(async function(req, res, next){
     let incomingAccessToken = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
     let incomingRefreshToken = req.cookies?.refreshToken || req.header("Authorization")?.replace("Bearer ", "");
     
-    if(!incomingAccessToken || !incomingRefreshToken ) throw new ApiError(400, "Authorization Token missing !");
+    if(!incomingAccessToken && !incomingRefreshToken ) throw new ApiError(400, "Authorization Token missing !");
 
     const accessTokenExp =await jwt.decode(incomingAccessToken).exp * 1000; // Multiply by 1000 to convert seconds to milliseconds
     

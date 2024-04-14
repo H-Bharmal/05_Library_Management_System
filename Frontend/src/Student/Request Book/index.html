@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student - Request Book</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="../booklist.css">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+    <script src="../navbar/script.js"></script>
+
+    <div class="maincontent">
+        <div class="tab">
+            <button class="tablinks tabactive" onclick="activepage()">My Requests</button>
+            <button class="tablinks" onclick="activepage()">New Request</button>
+        </div>
+        <div id="MyRequests" class="tabcontent tabactive">
+            <h3>My Requests</h3>
+            <button type="button" class="collapsible">Active Requests</button>
+            <div class="ActiveRequests collapse-content">
+                <div id="requestedBooks" class="bookList">
+                    <table class="requestedBooksTable books">
+                        <thead>
+                            <tr>
+                                <th>Issue Date</th>
+                                <th>Book Title</th>
+                                <th>Book Cover</th>
+                                <th>Description</th>
+                                <th>Author(s)</th>
+                                <th>Categories</th>
+                                <th>Publisher</th>
+                                <th>ISBN</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookListTableBodyRequestedBook">
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" class="collapsible">Request History</button>
+            <div class="RequestHistory collapse-content">
+                <div id="requestedHistory" class="bookList">
+                    <table class="requestedHistoryBooksTable books">
+                        <thead>
+                            <tr>
+                                <th>Issue Date</th>
+                                <th>Book Title</th>
+                                <th>Book Cover</th>
+                                <th>Description</th>
+                                <th>Author(s)</th>
+                                <th>Categories</th>
+                                <th>Publisher</th>
+                                <th>ISBN</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="TableBodyHistoryRequestedBook">
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="NewRequest" class="tabcontent">
+            <!-- <h3>New Request</h3> -->
+            <div class="request-content">
+                <div class="form" id="reqeust-form">
+                    <form>
+                        <input type="text" placeholder="Book Title" id="form-book-title">
+                        <input type="text" placeholder="ISBN-10" id="form-isbn10">
+                        <input type="text" placeholder="ISBN-13" id="form-isbn13">
+                        <button type="submit">Request Book</button>
+                    </form>
+                </div>
+                <div class="acknowledgeBookRequest">
+                    <div class="left">
+                        <div class="bookImage">
+                            <img src="" alt="" id="book-cover">
+                        </div>
+                        <div class="lower">
+                            <div class="categories">
+                                <h5>Categories:</h5>
+                                <p id="categories">Biography, Fiction</p>
+                            </div>
+                            <div class="publisher">
+                                <h5>Publisher</h5>
+                                <span id="publisher">Rupa publication</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="rightUpper">
+                            <!-- <div class="title-author"> -->
+                                <h2 id="book-title"><a href="" id="book-title-link">book title</a></h2>
+                                <span>Author(s):<label id="Author">Hamza Bharmal</label></span>
+                            <!-- </div> -->
+                            <div class="isbn">
+                                <span>isbn10:<label id="isbn10">34534563565</label></span>
+                                <span>isbn13:<label id="isbn13">34534563565</label></span>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <h3>Description</h3>
+                            <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore minima repellendus accusamus gendi aspernatur!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>

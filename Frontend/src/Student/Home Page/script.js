@@ -1,5 +1,5 @@
 async function getUser() {
-    const url = "http://localhost:8000/api/v1/student/dashboardRender";
+    const url = "http://localhost:8000/api/v1/student/getStudentDetails";
     const res = await fetch(url,
         {
             method: 'GET',
@@ -57,7 +57,7 @@ async function renderDashBoard() {
     const username = document.querySelector("#username");
     const profilePic = document.querySelector(".profile img");
     username.innerHTML = student.firstName;
-    profilePic.src = student.profilePic || "Images/user.png"
+    profilePic.src = student.profilePic || "../Images/user.png"
 
     // Book List along with issue date and Fine
     const bookData = await getBooksWithFine();
@@ -136,4 +136,5 @@ async function renderDashBoard() {
 window.onload = async function () {
     console.log("Calling user");
     await renderDashBoard();
+    document.getElementById("Home").classList.add("active");
 };

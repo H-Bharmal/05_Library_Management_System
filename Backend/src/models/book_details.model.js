@@ -42,6 +42,7 @@ const bookDetailsSchema = new mongoose.Schema({
         type : String,
         lowercase : true,
     }],
+    
     pageCount : {
         type : Number,
     },

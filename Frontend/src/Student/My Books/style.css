@@ -1,11 +1,14 @@
-.currentActiveBooks h5{
-    text-transform: capitalize;
+.content{
+    padding: 40px 100px;
 }
-
-/* Adding collapsible table */
+/* .collapse{
+    display: flex;
+    flex-direction: column;
+} */
 .collapsible {
-    background-color: #eee;
-    color: #444;
+    text-transform: capitalize;
+    background-color: #b6b3b3;
+    color: white;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -13,26 +16,30 @@
     text-align: left;
     outline: none;
     font-size: 15px;
+    margin: 20px 0;
 }
 
-.active, .collapsible:hover {
-    background-color: #ccc;
+.collapse-active,
+.collapsible:hover {
+    background-color: #555;
 }
-.collapsible-content {
+
+.collapse-content {
     padding: 0 18px;
     background-color: white;
-    max-height: 0;
-    overflow: hidden;
+    /* max-height: 400px; */
+    display: none;
+    overflow:auto;
     transition: max-height 0.2s ease-out;
 }
+
 .collapsible:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    content: '\02795';
     font-size: 13px;
     color: white;
     float: right;
     margin-left: 5px;
 }
-
-.active:after {
-content: "\2796"; /* Unicode character for "minus" sign (-) */
+.collapse-active:after {
+    content: "\2796"; 
 }
