@@ -3,7 +3,7 @@ const loginId = document.querySelector(".user-box input");
 const password = document.querySelector(".password-box input");
 console.log(loginBtn);
 async function auth() {
-    const url = `http://localhost:8000/api/v1/student/login`
+    const url = `/api/v1/student/login`
 
     data = {
         studentId : loginId.value,
