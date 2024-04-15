@@ -3,7 +3,7 @@
     "routes": [
         {
             "src": "/vercel/.*",
-            "dest": "Backend/src/app.js"
+            "dest": "index.html"
         }
     ]
 }
