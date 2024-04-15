@@ -1,9 +1,0 @@
-{
-    
-    "routes": [
-        {
-            "src": "/vercel/.*",
-            "dest": "index.html"
-        }
-    ]
-}
