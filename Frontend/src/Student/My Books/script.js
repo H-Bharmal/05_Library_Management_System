@@ -1,5 +1,6 @@
+import {API_DOMAIN} from "../../constants.js"
 async function getIssuedBooks() {
-    const url = "http://localhost:8000/api/v1/student/booksWithFineStudent";
+    const url = `${API_DOMAIN}/api/v1/student/booksWithFineStudent`;
     const response = await fetch(
         url,
         {
@@ -12,7 +13,7 @@ async function getIssuedBooks() {
 }
 
 async function getEntireBookDetailsByBookInstance(bookInstance) {
-    const url = "http://localhost:8000/api/v1/book/getEntireBookDetailsByBookInstance";
+    const url = `${API_DOMAIN}/api/v1/book/getEntireBookDetailsByBookInstance`;
     const response = await fetch(url,
         {
             method: "POST",

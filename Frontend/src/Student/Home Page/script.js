@@ -1,4 +1,6 @@
-const API_DOMAIN="https://zero5-library-management-system.onrender.com";
+// const API_DOMAIN="https://zero5-library-management-system.onrender.com";
+// const API_DOMAIN="http://localhost:8000";
+import { API_DOMAIN } from "../../constants.js";
 async function getUser() {
     const url = `${API_DOMAIN}/api/v1/student/getStudentDetails`;
     const res = await fetch(url,

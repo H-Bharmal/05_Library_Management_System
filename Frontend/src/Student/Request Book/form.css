@@ -45,14 +45,14 @@
     margin-left: 50px;
     padding: 20px;
     display: none;
-    justify-content: space-between;
+    justify-content: space-evenly;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .left{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-width: 400px;
+    justify-content: space-evenly;
+    min-width: 300px;
     margin:0 20px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -77,6 +77,8 @@
 }
 .right .description{
     margin-top: 30px;
+    max-height: 300px;
+    overflow: scroll;
 }
 .right .description p{
     padding: 20px;

@@ -1,3 +1,5 @@
+import {API_DOMAIN} from "../../constants.js"
+
 function generateBookRow(bookDetails, bookRequest, tableBody) {
 
     const row = document.createElement('tr');
@@ -50,7 +52,7 @@ function generateBookRow(bookDetails, bookRequest, tableBody) {
 }
 
 async function getAllBookRequested(){
-    const url = "http://localhost:8000/api/v1/book/getBookRequestStudent";
+    const url = `${API_DOMAIN}/api/v1/book/getBookRequestStudent`;
 
     const response = await fetch(url,
         {
@@ -63,7 +65,7 @@ async function getAllBookRequested(){
 }
 
 async function getBookDetailsByISBN(isbn10, isbn13){
-    const url = "http://localhost:8000/api/v1/book/getBookDetailByISBN";
+    const url = `${API_DOMAIN}/api/v1/book/getBookDetailByISBN`;
 
     const response = await fetch(url,
         {
@@ -145,8 +147,8 @@ async function onRequestFormSubmit(){
         notification("All fields cannot be Empty");
         return ;
     }
-    const urlhead = "http://localhost:8000/api/v1";
-    const url = `${urlhead}/book/requestBookByISBN`
+    
+    const url = `${API_DOMAIN}/book/requestBookByISBN`
     const response = await fetch(url,
         {
             method:'POST',
@@ -172,7 +174,7 @@ async function onRequestFormSubmit(){
     console.log("Request Successful",responseJSON);
     // fetch book details
     const book = responseJSON.data?.book ;
-    const url2 = `${urlhead}/book/getBookDetailByBookID`;
+    const url2 = `${API_DOMAIN}/book/getBookDetailByBookID`;
     const responseDetails = await fetch(url2,
         {
             method:'POST',
@@ -248,6 +250,13 @@ function addEventListeners(){
                 content.style.display = "inherit";
             }
         });
+    }
+
+    let tablinks = document.getElementsByClassName("tablinks");
+    for(i=0;i<tablinks.length;i++){
+        tablinks[i].addEventListener("click", (e)=>{
+            activepage();
+        })
     }
 }
 
