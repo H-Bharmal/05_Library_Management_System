@@ -100,8 +100,8 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
 
     // send cookies
     const options = {
-        httpOnly : true,
-        secure : true,
+        // httpOnly : true,
+        // secure : true,
         sameSite: 'None',
     }
 

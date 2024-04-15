@@ -31,7 +31,7 @@ const allowedOrigins = ['https://05-library-management-system.vercel.app', 'http
 app.use(cors({
   origin: ['https://05-library-management-system.vercel.app', 'http://localhost:5500'],
   credentials: true,
-  allowedHeaders: ['Content-Type']
+  allowedHeaders: ['Content-Type'],
 }));
 
 app.use("/api/v1/student",studentRouter);
