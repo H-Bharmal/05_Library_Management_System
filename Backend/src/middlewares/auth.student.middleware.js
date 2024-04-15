@@ -37,7 +37,8 @@ const verifyJWTStudent =asyncHandler(async function(req, res, next){
         
         const options = {
             httpOnly : true,
-            secure : true
+            secure : true,
+            path: '/'
         } 
 
         res
