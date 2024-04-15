@@ -14,10 +14,10 @@ app.use(express.json({
 app.use(cookieParser());
 
 app.use(cors({
-    origin: '*',
-    credentials: true,
-    allowedHeaders: ['Content-Type']
-  }))
+  origin: ['https://05-library-management-system.vercel.app', 'http://localhost'],
+  credentials: true,
+  allowedHeaders: ['Content-Type']
+}));
 
 app.use("/api/v1/student",studentRouter);
 app.use("/api/v1/admin",adminRouter);
