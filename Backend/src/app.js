@@ -13,7 +13,7 @@ app.use(express.json({
 
 app.use(cookieParser());
 
-const allowedOrigins = ['https://05-library-management-system.vercel.app', 'http://localhost'];
+const allowedOrigins = ['https://05-library-management-system.vercel.app', 'http://localhost:5500'];
 
 app.use(cors({
   origin: function(origin, callback) {
