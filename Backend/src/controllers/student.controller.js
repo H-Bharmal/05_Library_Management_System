@@ -97,11 +97,13 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
 
     const loggedInStudent =await Student.findById(student._id).select("-password -refreshToken");
 
-
+    const expirationDate = new Date();
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     // send cookies
     const options = {
-        // httpOnly : true,
-        // secure : true,
+        httpOnly : true,
+        secure : true,
+        expires : expirationDate,
         sameSite: 'None',
     }
 
