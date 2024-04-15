@@ -3,7 +3,7 @@
     "routes": [
         {
             "src": ".*",
-            "dest": "Frontend/src/Login/"
+            "dest": "Frontend/src/Login"
         }
     ]
 }
