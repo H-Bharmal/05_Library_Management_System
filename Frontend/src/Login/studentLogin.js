@@ -2,6 +2,7 @@ const loginBtn = document.querySelector(".loginbtn button")
 const loginId = document.querySelector(".user-box input");
 const password = document.querySelector(".password-box input");
 import { API_DOMAIN } from '../constants.js';
+import { notify } from '../utils/notify.js';
 
 console.log(loginBtn);
 async function auth() {
@@ -24,6 +25,8 @@ async function auth() {
     // pending to complere the code
     console.log(response);
     if(response.ok){
+        console.log("Login successful");
+        notify("Login Successful !");
         window.location.assign("../Student/Home Page/index.html")
     }
 }
