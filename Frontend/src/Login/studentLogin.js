@@ -27,7 +27,7 @@ async function auth() {
     if(response.ok){
         console.log("Login successful");
         notify("Login Successful !");
-        // window.location.assign("../Student/Home Page/index.html")
+        window.location.assign("../Student/Home Page/index.html")
     }
 }
 
