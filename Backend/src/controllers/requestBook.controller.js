@@ -18,8 +18,8 @@ import {asyncHandler} from "../utils/asyncHandler.js"
 
 const requestBook = asyncHandler( async (req,res)=>{
     // expected isbn number
-    console.log(req.body);
-    const {isbn10, isbn13, title} = req.body ;
+    console.log("hurry",req.body);
+    let {isbn10, isbn13, title} = req.body ;
     const student = req.student ;
     if (isbn10 === undefined && isbn13 === undefined && title === undefined) {
         throw new ApiError(400, "No field supplied");
@@ -33,6 +33,9 @@ const requestBook = asyncHandler( async (req,res)=>{
     }
     if(!isbn10 && !isbn13 && !title) throw new ApiError(400,"No field supplied");
 
+    title = title?.toLowerCase();
+    isbn10 = isbn10?.replace(/\D/g, "");
+    isbn13 = isbn13?.replace(/\D/g, "");
     console.log("I am going to be called : addBookInBookDetails");
     const bookResponse = await addBookInBookDetails(title, isbn10, isbn13);
     

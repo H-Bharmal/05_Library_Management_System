@@ -121,7 +121,7 @@ async function onRequestFormSubmit(){
         return ;
     }
     
-    const url = `${API_DOMAIN}/book/requestBookByISBN`
+    const url = `${API_DOMAIN}/api/v1/book/requestBookByISBN`
     const response = await fetch(url,
         {
             method:'POST',
@@ -147,7 +147,7 @@ async function onRequestFormSubmit(){
     console.log("Request Successful",responseJSON);
     // fetch book details
     const book = responseJSON.data?.book ;
-    const url2 = `${API_DOMAIN}/book/getBookDetailByBookID`;
+    const url2 = `${API_DOMAIN}/api/v1/book/getBookDetailByBookID`;
     const responseDetails = await fetch(url2,
         {
             method:'POST',

@@ -7,6 +7,7 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+
 .books {
     width: 100%;
     border-collapse: separate;
@@ -22,7 +23,7 @@
     text-transform: capitalize;
 }
 .books td img{
-    width: 100px;
+    width: 80px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -31,17 +32,17 @@
     background-color: #f2f2f2;
 }
 .books tbody p{
-    overflow-y: auto;
-    max-height: 150px;
+    overflow-y: hidden;
+    height: 150px;
     padding:20px
 }
 .books tbody p:hover{
     /* overflow-y:none; */
     /* max-height: 300px; */
-    overflow-y: scroll; /* Prevents content from overflowing */
+    overflow-y: auto; /* Prevents content from overflowing */
     max-height: 150px; /* Restricts the height to avoid excessive expansion */
     border-radius: 5px;
-    background-color: rgb(255, 247, 247);
+    background-color: rgb(209, 209, 209);
     font-size: 10px;
     transform: scale(1.8); /* Slightly increase the size on hover */
     transition: transform 0.5s ease, max-height 0.5s ease;
@@ -59,7 +60,7 @@
 }
 .books tbody tr:hover {
     /* background-color: #ddd; */
-    transform: scale(1.005);
+    /* transform: scale(1.005); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

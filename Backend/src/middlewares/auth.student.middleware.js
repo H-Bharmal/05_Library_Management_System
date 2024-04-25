@@ -7,6 +7,7 @@ import { Student } from "../models/student.model.js";
 import { generateAccessAndRefreshToken } from "../controllers/student.controller.js";
 
 const verifyJWTStudent =asyncHandler(async function(req, res, next){
+    console.log("Authorizing..");
     const incomingAccessToken = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
     const incomingRefreshToken = req.cookies?.refreshToken || req.header("Authorization")?.replace("Bearer ", "");
     console.log(req.cookies);

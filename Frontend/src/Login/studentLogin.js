@@ -27,10 +27,17 @@ async function auth() {
     if(response.ok){
         console.log("Login successful");
         notify("Login Successful !");
-        window.location.assign("../Student/Home Page/index.html")
+        window.location.assign("../Student/Home Page/")
+    }
+    else if(response.status == 401){
+        notify("Invalid Credentials");
+    }
+    else{
+        notify("Something went wrong !");
     }
 }
 
 loginBtn.addEventListener('click', (e)=>{
+    notify("Signing In...");
     auth();
 })

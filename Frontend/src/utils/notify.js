@@ -1,4 +1,4 @@
-function notify(message){
+function notify(message, color='green'){
     // Create the notification element
 const notification = document.createElement('div');
 notification.classList.add('notification');
@@ -8,7 +8,7 @@ notification.textContent = message;
 notification.style.position = 'fixed';
 notification.style.top = '20px';
 notification.style.right = '20px';
-notification.style.backgroundColor = 'green';
+notification.style.backgroundColor = color;
 notification.style.color = 'white';
 notification.style.padding = '10px';
 notification.style.borderRadius = '5px';

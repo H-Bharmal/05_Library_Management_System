@@ -84,12 +84,12 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
         $or : [{email : email?.toLowerCase()}, {mobileNumber}, {studentId : studentId?.toLowerCase()}]
     })
     if(!student){
-        throw new ApiError(400, "Student does not exists");
+        throw new ApiError(404, "Student does not exists");
     }
 
     // Now check if password matches
     if(!(await student.isPasswordCorrect(password))){
-        throw new ApiError(400, "Invalid Credentials");
+        throw new ApiError(401, "Invalid Credentials");
     }
 
     // Create jwt tokens
@@ -97,13 +97,13 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
 
     const loggedInStudent =await Student.findById(student._id).select("-password -refreshToken");
 
-    const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+    // const expirationDate = new Date();
+    // expirationDate.setFullYear(expirationDate.getFullYear() + 1);
     // send cookies
     const options = {
         httpOnly : true,
         secure : true,
-        expires : expirationDate,
+        // expires : expirationDate,
         sameSite: 'None',
     }
 

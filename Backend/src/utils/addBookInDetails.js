@@ -40,11 +40,11 @@ const addBookInBookDetails = async(titleInput,isbn10, isbn13)=>{
         responseData = data ;
     })
     .catch(error=>{
-        throw new ApiError(400, error.message || "Book Not Found, Try registering manually", [error])
+        throw new ApiError(404, error.message || "Book Not Found, Try registering manually", [error])
     })
     console.log(responseData);
     if (responseData.totalItems < 1)
-        throw new ApiError(400, "Book Not Found, Try registering manually")
+        throw new ApiError(404, "Book Not Found, Try registering manually")
 
     const items = responseData.items[0] ;
     const volumeInfo = items.volumeInfo ;
