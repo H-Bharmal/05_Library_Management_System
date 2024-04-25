@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../nav.css">
+<!-- <link rel="stylesheet" href="./nav.css"> -->
 <nav>
     <div class="topnav">
         <div class="navigation-items">
@@ -12,8 +12,13 @@
                 <button>Search</button>
             </div>
         </div>
-        <div class="profile">
-            <img src="../Images/user.png" alt="profile image">
+        <div class="profile dropdown">
+            <img src="../Images/user.png" alt="profile image" id='dropdown-profile-image'>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="../../Login/">Switch User</a>
+                <a href="#">Profile Settings</a>
+                <button id="logoutBtn">Logout</button>
+            </div>
         </div>
     </div>
 </nav>

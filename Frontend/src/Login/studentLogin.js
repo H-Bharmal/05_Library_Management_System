@@ -4,7 +4,7 @@ const password = document.querySelector(".password-box input");
 import { API_DOMAIN } from '../constants.js';
 import { notify } from '../utils/notify.js';
 
-console.log(loginBtn);
+
 async function auth() {
     const url = `${API_DOMAIN}/api/v1/student/login`
 
@@ -30,14 +30,19 @@ async function auth() {
         window.location.assign("../Student/Home Page/")
     }
     else if(response.status == 401){
-        notify("Invalid Credentials");
+        notify("Invalid Credentials", 'red');
     }
     else{
-        notify("Something went wrong !");
+        notify("Something went wrong !", 'red');
     }
 }
 
-loginBtn.addEventListener('click', (e)=>{
+document.getElementById('login-form').addEventListener('submit',async (e)=>{
+    e.preventDefault();
     notify("Signing In...");
-    auth();
+    await auth();
 })
+// loginBtn.addEventListener('click', (e)=>{
+//     notify("Signing In...");
+//     auth();
+// })

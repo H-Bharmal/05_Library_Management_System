@@ -4,6 +4,7 @@ import { studentRouter } from "./routes/student.route.js";
 import cookieParser from "cookie-parser"
 import { adminRouter } from "./routes/admin.route.js";
 import { bookRouter } from "./routes/book.route.js";
+import { searchRouter } from "./routes/search.route.js";
 
 const app = express();
 
@@ -29,7 +30,7 @@ const allowedOrigins = ['https://05-library-management-system.vercel.app', 'http
 //   // Other CORS options...
 // }));
 app.use(cors({
-  origin: ['https://05-library-management-system.vercel.app', 'http://localhost:5500'],
+  origin: ['https://05-library-management-system.vercel.app', 'http://127.0.0.1:5500'],
   credentials: true,
   allowedHeaders: ['Content-Type'],
 }));
@@ -37,6 +38,7 @@ app.use(cors({
 app.use("/api/v1/student",studentRouter);
 app.use("/api/v1/admin",adminRouter);
 app.use("/api/v1/book",bookRouter);
+app.use("/api/v1/search",searchRouter);
 
 app.get("/api/v1",(req,res)=>{
   res.status(200).

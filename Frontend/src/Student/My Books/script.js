@@ -123,6 +123,6 @@ function addEventListeners(){
 window.onload = async function () {
     await pageRender();
     document.getElementById("MyBooks").classList.add("active");
-    console.log("Page Rendering done");
+    // console.log("Page Rendering done");
     addEventListeners();
 }
