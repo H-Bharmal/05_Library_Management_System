@@ -52,6 +52,7 @@ body {
     padding: 8px;
     width: 100%;
     border: none;
+    outline:none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     flex: 1;
