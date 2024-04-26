@@ -1,6 +1,6 @@
 import { API_DOMAIN } from "../../constants.js";
 async function getEntireBookDetailsByBookInstance(bookInstance) {
-    const url = `${API_DOMAIN}/api/v1/book/getEntireBookDetailsByBookInstance`;
+    const url = `${API_DOMAIN}/book/getEntireBookDetailsByBookInstance`;
     const response = await fetch(url,
         {
             method: "POST",
@@ -75,7 +75,7 @@ function generateBookRow(entireBookDetails, issueDate, tableBody) {
 }
 
 async function getBooksHistory() {
-    const url = `${API_DOMAIN}/api/v1/student/getStudentBookHistory`;
+    const url = `${API_DOMAIN}/student/getStudentBookHistory`;
     const response = await fetch(
         url,
         {

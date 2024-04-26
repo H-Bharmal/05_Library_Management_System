@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded",async function() {
 // fetchNavBar();
 
 async function logout(){
-    const url = `${API_DOMAIN}/api/v1/student/logout`
+    const url = `${API_DOMAIN}/student/logout`
     const response = await fetch(url,
     {
         method : "POST",

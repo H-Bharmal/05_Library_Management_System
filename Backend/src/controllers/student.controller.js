@@ -3,6 +3,7 @@ import {asyncHandler} from "../utils/asyncHandler.js"
 import {ApiError }from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import { Student } from "../models/student.model.js";
+import { cookieOptions } from "../constants.js";
 
 const registerStudent = asyncHandler( async (req, res, next)=>{
     console.log(req.body);
@@ -48,6 +49,7 @@ const registerStudent = asyncHandler( async (req, res, next)=>{
 
 const generateAccessAndRefreshToken = async (studentID)=>{
     try{
+        console.log("Generating new Tokens..");
         const student = await Student.findById(studentID);
 
         const accessToken = student.generateAccessToken();
@@ -58,7 +60,7 @@ const generateAccessAndRefreshToken = async (studentID)=>{
 
         // save
         await student.save();
-
+        console.log("Tokens generated !");
         return {accessToken, refreshToken}
     }
     catch(error){
@@ -108,8 +110,8 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
     }
 
     return res.status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
+    .cookie("accessToken", accessToken, cookieOptions)
+    .cookie("refreshToken", refreshToken, cookieOptions)
     .json(new ApiResponse(200, loggedInStudent, "Logged In Successfully"));
 })
 
@@ -161,4 +163,29 @@ const getStudentBookHistory = asyncHandler( async(req, res)=>{
     .json(new ApiResponse(200,student?.bookHistory, "Book History Fetched"))
 })
 
-export {registerStudent, loginStudent, logoutStudent, getStudentDetails, getStudentBookHistory, generateAccessAndRefreshToken}
+const changePassword = asyncHandler( async (req, res)=>{
+    // Check if user is logged in
+    // Check if password provided is same as password in database
+    // If yes, change the password
+    console.log("Changing Password..");
+    const user = req.student ;
+    console.log(req.body);
+    const currentPassword = req.body.currentPassword ;
+    const newPassword = req.body.newPassword?.trim() ;
+    if(!currentPassword) throw new ApiError(400,"Credentials Required !");
+    if(!newPassword || newPassword==="") throw new ApiError(400,"No password Supplied !");
+    if(!user) throw new ApiError(401,"Unauthorized access");
+
+    // console.log(user._id);
+    const student =await Student.findById(user._id);
+    if(!student) throw new ApiError(500,"Error fetching student from database");
+    // console.log("Verifying passwords!");
+    // console.log(student);
+    if(! await student.changePassword(currentPassword, newPassword)){
+        throw new ApiError(400,"Invalid Credentials!");
+    }
+    res.status(200)
+    .json(new ApiResponse(200,{},"Password Changed Success!"));
+})
+
+export {registerStudent, loginStudent, logoutStudent, getStudentDetails, getStudentBookHistory, generateAccessAndRefreshToken, changePassword}

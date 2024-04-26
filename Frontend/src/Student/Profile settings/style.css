@@ -5,14 +5,16 @@ body{
     overflow: hidden;
 }
 .container{
-    margin:80px 150px; 
+    margin:50px 150px; 
     display: flex;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    height: 500px;
+    border-radius: 18px;
+    height: 550px;
 }
 .section-left{
     flex: 0.25;
     /* padding: 50px; */
+    border-radius: 18px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .options{
@@ -20,40 +22,52 @@ body{
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
+    padding: 20px;
+}
+.cur-tab-profile-btn{
+    background: rgb(1, 171, 1);
+    color: #fff;
+    cursor:no-drop;
 }
 .options button{
     /* flex: 1; */
     width: 100%;
-    /* margin-top: 10px; */
+    margin-top: 10px;
     padding: 16px 20px;
     font-size: 18px;
     outline: none;
-    background: transparent;
+    /* background: transparent; */
     border: none;
     border-radius: 5px;
 }
-.options button:hover{
-    background-color: #eae9e9;
+.options button:not(.cur-tab-profile-btn):hover{
+    background-color: #dbdbdb;
+    cursor: pointer;
 }
 .section-right{
     flex: 0.75;
-    border-top-right-radius: 18px;
-    border-bottom-right-radius: 18px;
+    display: flex;
+    justify-content: start;
 }
-.section-right div{
-    margin: 100px;
-    /* text-align: center; */
-    padding: 50px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+.section-right .password{
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid black;
+    border-radius: 18px;
+    display: none;
+    flex-direction: column;
 }
-.section-right div form{
+
+.section-right .password form{
     margin-top: 30px;
     display: flex;
+    flex: 1;
     flex-direction: column;
     max-width: 300px;
 }
-.section-right div form input,
-.section-right form button{
+.section-right .password form input,
+.section-right .password form button{
     margin-top: 10px;
     padding: 10px 16px;
     font-size: 16px;
@@ -62,7 +76,78 @@ body{
     border: none;
     border-radius: 5px;
 }
-.section-right form button{
+.section-right .password form button{
     color: #fff;
     background-color: green;
+    cursor: pointer;
 }
+
+.section-right .profile-info{
+    flex: 1;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+    justify-content: space-evenly;
+    display: flex;
+}
+.section-right .profile-info .left{
+    display: flex;
+    flex-direction: column;
+    flex: 0.25;
+    justify-content: space-around;
+}
+.profile-info .left .profile-pic{
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.profile-info .left .profile-pic img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.profile-info .left button{
+    
+    background-color: green;
+    color: #fff;
+    padding:10px 16px;
+    margin: 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.profile-info .left input{
+    margin-bottom: 5px;
+}
+.profile-info .right{
+    flex: 0.65;
+    margin-left:50px ;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.profile-info .right .field{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.profile-info h1{
+    text-transform: capitalize;
+}
+.profile-info input{
+    width: 250px;
+    background-color: #eae9e9;
+    outline: none;
+    border: none;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius:5px;
+    text-transform: capitalize;
+}
+

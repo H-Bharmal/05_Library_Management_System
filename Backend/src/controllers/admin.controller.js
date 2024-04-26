@@ -95,7 +95,7 @@ const loginAdmin = asyncHandler( async(req, res, next)=>{
         secure : true,
     }
 
-    res.status(200)
+    return res.status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(new ApiResponse(200, loggedInAdmin, "Logged In Successful !"));

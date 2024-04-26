@@ -2,7 +2,7 @@
 // const API_DOMAIN="http://localhost:8000";
 import { API_DOMAIN } from "../../constants.js";
 async function getUser() {
-    const url = `${API_DOMAIN}/api/v1/student/getStudentDetails`;
+    const url = `${API_DOMAIN}/student/getStudentDetails`;
     const res = await fetch(url,
         {
             method: 'GET',
@@ -19,7 +19,7 @@ async function getUser() {
     return data;
 }
 async function getBooksWithFine() {
-    const url = `${API_DOMAIN}/api/v1/student/booksWithFineStudent`;
+    const url = `${API_DOMAIN}/student/booksWithFineStudent`;
     const response = await fetch(url,
         {
             method: "GET",
@@ -35,7 +35,7 @@ async function getBooksWithFine() {
 }
 
 async function getBookDetail(bookInstanceId){
-    const url = `${API_DOMAIN}/api/v1/book/getBookDetailByBookInstanceId`;
+    const url = `${API_DOMAIN}/book/getBookDetailByBookInstanceId`;
     console.log(bookInstanceId);
     const response = await fetch(url,
         {
@@ -60,7 +60,7 @@ async function renderDashBoard() {
     const username = document.querySelector("#username");
     const profilePic = document.querySelector(".profile img");
     username.innerHTML = student.firstName;
-    profilePic.src = student.profilePic || "../Images/user.png"
+    profilePic.src = student.profilePic || "../../../Images/user.png"
 
     // Book List along with issue date and Fine
     const bookData = await getBooksWithFine();

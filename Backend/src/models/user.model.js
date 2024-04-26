@@ -110,7 +110,21 @@ userSchema.statics.generateAccessToken = function(){
         }
         )
 }
-
+userSchema.statics.changePassword = async function(currentPassword, newPassword){
+    // console.log("Inside userSchema changepassword method");
+    // verify the passwords
+    if(await this.isPasswordCorrect(currentPassword)){
+        // Change the password
+        this.password = newPassword ;
+        await this.save();
+        console.log("Verfication Success");
+        return true;
+    }
+    else{
+        // throw new ApiError(400, "Invalid Credentials !");
+        return false;
+    }
+}
 
 
 // const User = mongoose.model("User", userSchema);

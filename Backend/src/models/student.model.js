@@ -55,5 +55,10 @@ studentSchema.methods.generateAccessToken = function(){
 studentSchema.methods.isPasswordCorrect = function(password){
     return userSchema.statics.isPasswordCorrect.call(this, password);
 }
+studentSchema.methods.changePassword = async function(currentPassword, newPassword){
+    // console.log("Inside studentSchema changepassword method");
+
+    return await userSchema.statics.changePassword.call(this, currentPassword, newPassword);
+}
 
 export const Student = mongoose.model("Student", studentSchema);

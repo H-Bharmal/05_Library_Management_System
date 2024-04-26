@@ -6,7 +6,7 @@ import { notify } from '../utils/notify.js';
 
 
 async function auth() {
-    const url = `${API_DOMAIN}/api/v1/student/login`
+    const url = `${API_DOMAIN}/student/login`
 
     const data = {
         studentId : loginId.value,
