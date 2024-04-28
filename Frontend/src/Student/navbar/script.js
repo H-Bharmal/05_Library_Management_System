@@ -1,5 +1,6 @@
 import { notify } from "../../utils/notify.js";
 import { API_DOMAIN } from "../../constants.js";
+import { updateProfileImages } from "../../utils/updateProfiles.js";
 
 async function fetchNavBar(){
     const url = "../navbar/navbar.html";
@@ -22,6 +23,8 @@ document.addEventListener("DOMContentLoaded",async function() {
     document.getElementById('logoutBtn').addEventListener('click', async (e)=>{
         await logout();
     })
+    console.log("Navbar - Loading Profile Images");
+    await updateProfileImages();
 });
 // fetchNavBar();
 

@@ -28,6 +28,12 @@
                         <h1>Hi, <label id="username"></label></h1>
                         <div class="profile-pic">
                             <img src="" alt="Profile Image" id="profile-picture-img">
+                            <div class="dropdown profile-dropdown-active">
+                                <label for="profile-pic-input">Update Profile</label>
+                                <input type="file" accept="image/png, image/jpeg, image/jpg" id="profile-pic-input" >
+                                <label for="Remove-Profile">Remove Profile</label>
+                                <input type="button" id="Remove-Profile">
+                            </div>
                         </div>
                         <div class="updatable">
                             <div class="field">
@@ -40,7 +46,8 @@
                             </div>
                         </div>
                     </div>
-                    <button id="update info">Update Info</button>
+                    <button id="update-info">Update</button>
+                    <button id="CancelBtn">Cancel</button>
                 </div>
                 <div class="right">
                     <h2>Profile Information</h2>

@@ -4,6 +4,7 @@ import {ApiError }from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import { Student } from "../models/student.model.js";
 import { cookieOptions } from "../constants.js";
+import { deleteFromCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const registerStudent = asyncHandler( async (req, res, next)=>{
     console.log(req.body);
@@ -188,4 +189,104 @@ const changePassword = asyncHandler( async (req, res)=>{
     .json(new ApiResponse(200,{},"Password Changed Success!"));
 })
 
-export {registerStudent, loginStudent, logoutStudent, getStudentDetails, getStudentBookHistory, generateAccessAndRefreshToken, changePassword}
+const updateInformation = asyncHandler( async (req, res)=>{
+    // Expects image, mobileNumber, Email
+    console.log("Stating to update information");
+    const imagePath = req.file?.path ;
+    const mobile = req.body.mobile ;
+    const email = req.body.email ;
+    console.log(req.body);
+    if(!imagePath && !mobile && !email) throw new ApiError(400, "No Information to Update");
+    if(mobile?.trim() =='' || email?.trim() =='') throw new ApiError(400, "Fields Required !");
+    
+    const student = req.student ;
+    
+    if(student.email == email && student.mobileNumber == mobile && !imagePath) throw new ApiError(400, "No modifications done !");
+    
+    let imagePathPresent = true ;
+    console.log("Image path : ",imagePath);
+    if(!imagePath) imagePathPresent = false ;
+    console.log("Image path present: ",imagePathPresent);
+
+    let imageOnCloudinary ;
+    if(imagePathPresent){
+        imageOnCloudinary =await uploadOnCloudinary(imagePath);
+
+        if(!imageOnCloudinary) throw new ApiError(500, "Error uploading image !");
+        
+        // console.log(imageOnCloudinary);
+    }
+
+    const currentImage = student.profilePicture ;
+    let updatedImage = null;
+    let updatedMobile=null, updatedEmail=null ;
+    if(imagePathPresent){
+        updatedImage = imageOnCloudinary.secure_url || currentImage  ;
+    }
+    else{
+        updatedImage = currentImage ;
+    }
+    if(mobile && mobile?.trim() !=='null'){
+        updatedMobile = mobile || student.mobileNumber ;
+    }
+    else{
+        updatedMobile = student.mobileNumber ;
+    }
+    if(email && email?.trim() !=='null'){
+        updatedEmail = email || student.email ;
+    }
+    else{
+        updatedEmail = student.email ;
+    }
+
+    const updatedStudent = await Student.findByIdAndUpdate(student._id,{
+        $set : {
+            profilePicture : updatedImage,   
+            mobileNumber : updatedMobile,
+            email : updatedEmail
+        }
+    }, {new : true})?.select("-password -refreshToken");
+
+    if(!updatedStudent) throw new ApiError(500, "Something went wrong while updating the database");
+
+    if(updatedImage != currentImage){
+        // Delete the old image from the cloudinary database
+        const isImageDeleted = await deleteFromCloudinary(currentImage);
+        if(isImageDeleted) console.log("Old Image deleted from cloudinary");
+        if(!isImageDeleted) console.log("Old Image could not be deleted");
+    }
+    // console.log(imagePath);
+    // console.log(mobile);
+    // console.log(email);
+    return res.status(200).json(new ApiResponse(200,updatedStudent, "Student Information updated successfully"));
+})
+
+const removeProfilePicture = asyncHandler(async(req, res)=>{
+    // Just the student is enough
+    const student = req.student ;
+    if(!student) throw new ApiError(401, "Unauthorized Request !")
+
+    if(!student.profilePicture || student.profilePicture?.trim() == '') throw new ApiError(404,"No profile picture found");
+
+    const isImageDeleted = await deleteFromCloudinary(student.profilePicture);
+    if(!isImageDeleted) throw new ApiError(500, "Something went wrong while deleting the image");
+
+    const updatedStudent = await Student.findByIdAndUpdate(student._id, {
+        $set : {
+            profilePicture : null
+        }
+    }, {new : true})?.select("-password -refreshToken");
+
+    if(!updatedStudent) throw new ApiError(500, "Something went wrong while updating database");
+
+    return res.status(200).json(new ApiResponse(200,updatedStudent, "Profile Removed Successfully"))
+})
+
+const getProfilePicture = asyncHandler(async (req,res)=>{
+    const student = req.student ;
+    if(!student.profilePicture || student.profilePicture?.trim() =='') throw new ApiError(404,"No profile Picture Found !");
+
+    return res.status(200).json(new ApiResponse(200,{profilePicture : student.profilePicture}));
+})
+
+export {registerStudent, loginStudent, logoutStudent, getStudentDetails, getStudentBookHistory, generateAccessAndRefreshToken, changePassword, updateInformation, removeProfilePicture, getProfilePicture}

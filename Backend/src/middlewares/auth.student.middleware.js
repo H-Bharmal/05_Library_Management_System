@@ -10,7 +10,7 @@ const verifyJWTStudent =asyncHandler(async function(req, res, next){
     console.log("Authorizing..");
     const incomingAccessToken = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
     const incomingRefreshToken = req.cookies?.refreshToken || req.header("Authorization")?.replace("Bearer ", "");
-    console.log(req.cookies);
+    // console.log(req.cookies);
     
 
     if(!incomingAccessToken || !incomingRefreshToken ) throw new ApiError(400, "Authorization Token missing !");

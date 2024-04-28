@@ -12,7 +12,7 @@ async function getUser() {
             // body: JSON.stringify(data),
             credentials: 'include'
         })
-    console.log(res);
+    //console.log(res);
     const resJson = await res.json();
     const data = resJson.data
 
@@ -27,16 +27,16 @@ async function getBooksWithFine() {
         })
 
     const responseJson = await response.json();
-    console.log(responseJson);
+    //console.log(responseJson);
     const data = responseJson.data
-    console.log("Book Data", data);
+    //console.log("Book Data", data);
 
     return data;
 }
 
 async function getBookDetail(bookInstanceId){
     const url = `${API_DOMAIN}/book/getBookDetailByBookInstanceId`;
-    console.log(bookInstanceId);
+    //console.log(bookInstanceId);
     const response = await fetch(url,
         {
             method : "POST",
@@ -65,7 +65,7 @@ async function renderDashBoard() {
     // Book List along with issue date and Fine
     const bookData = await getBooksWithFine();
     const books = bookData.books;
-    console.log(books);
+    //console.log(books);
     const fineTile = document.querySelector("#fine")
     const renewDateTile = document.querySelector("#renewDate")
     const bookCountTile = document.querySelector("#totalBook")
@@ -137,7 +137,7 @@ async function renderDashBoard() {
 }
 
 window.onload = async function () {
-    console.log("Calling user");
+    console.log("Rendering Dashboard");
     await renderDashBoard();
     document.getElementById("Home").classList.add("active");
 };
