@@ -30,7 +30,7 @@ const allowedOrigins = ['https://05-library-management-system.vercel.app', 'http
 //   // Other CORS options...
 // }));
 app.use(cors({
-  origin: ['https://05-library-management-system.vercel.app', 'http://127.0.0.1:5500'],
+  origin: ['https://05-library-management-system.vercel.app', 'http://localhost:5500'],
   credentials: true,
   allowedHeaders: ['Content-Type'],
 }));

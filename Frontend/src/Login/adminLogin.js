@@ -6,10 +6,10 @@ import { notify } from '../utils/notify.js';
 
 
 async function auth() {
-    const url = `${API_DOMAIN}/student/login`
+    const url = `${API_DOMAIN}/admin/login`
 
     const data = {
-        studentId : loginId.value,
+        adminId : loginId.value,
         email : loginId.value,
         mobileNumber : loginId.value,
         password : password.value
@@ -28,9 +28,9 @@ async function auth() {
     if(response.ok){
         console.log("Login successful");
         notify("Login Successful !");
-        window.location.assign("../Student/Home Page/")
+        window.location.assign("../Admin/Home Page/")
     }
-    else if(response.status == 401){
+    else if(response.status >= 400 && response.status < 500){
         notify("Invalid Credentials", 'red');
     }
     else{

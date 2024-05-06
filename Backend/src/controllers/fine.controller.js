@@ -20,24 +20,29 @@ const booksWithFineStudent = asyncHandler(async (req, res)=>{
         
     if(!student) throw new ApiError(400,"Invalid Request, Student not found");
 
+
+    const response = await Issue.find({
+        student : student._id
+    })
     // Find all the issues of a student and sum the fine
-    const response = await Issue.aggregate([
-        {
-            $match :{
-                student : student._id
-            }
-        },
-        // {
-        //     $group:{
-        //         _id : "$student",
-        //         fine : {$sum : "$fine"}
-        //     }
-        // }
-    ])
+    // const response = await Issue.aggregate([
+    //     {
+    //         $match :{
+    //             student : student._id
+    //         }
+    //     },
+    //     // {
+    //     //     $group:{
+    //     //         _id : "$student",
+    //     //         fine : {$sum : "$fine"}
+    //     //     }
+    //     // }
+    // ])
     // console.log("The response from aggregate query is : ",response);
     let totalFine=0;
     response.forEach((issue)=>{
-        totalFine += issue?.fine
+        issue.fine = issue.getFine()
+        totalFine += issue?.fine;
     })
     // console.log("The total fine is ", totalFine);
     

@@ -49,8 +49,9 @@ const issueSchema = new mongoose.Schema({
 //     }
 // }
 
-issueSchema.methods.updateFine = function(){
+issueSchema.methods.updateFine =async function(){
     this.fine = this.getFine();
+    await this.save();
 }
 issueSchema.methods.getFine = function(){
     const dateIssue = this.updatedAt ;

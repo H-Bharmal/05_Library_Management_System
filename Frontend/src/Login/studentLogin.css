@@ -4,11 +4,29 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+body h1{
+    position: fixed;
+    left: 50px;
+    top:50px;
+}
+.background{
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    height: 50%;
+    /* width: 30%; */
+    overflow:-moz-hidden-unscrollable;
+ 
+    transform: rotate(-15deg); /* Adjust the degree of rotation as needed */
+
 }
 
 .container {
@@ -85,10 +103,18 @@ input[type="password"]:focus {
 }
 
 @media only screen and (max-width: 600px) {
-.container{
-    width : 200px;
-}
-.link{
-    flex-direction: column;
-}
+    body h1{
+        font-size: 24px;
+        left: 20px;
+        top:20px;
+    }
+    .background{
+        height: 30%;
+    }
+    .container{
+        width : 200px;
+    }
+    .link{
+        flex-direction: column;
+    }
 }

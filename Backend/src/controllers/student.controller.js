@@ -84,7 +84,7 @@ const loginStudent = asyncHandler( async (req, res, next)=>{
     }
 
     const student = await Student.findOne({
-        $or : [{email : email?.toLowerCase()}, {mobileNumber}, {studentId : studentId?.toLowerCase()}]
+        $or : [{email : email?.toLowerCase()}, {mobileNumber : isNaN(mobileNumber) ? -1 : mobileNumber}, {studentId : studentId?.toLowerCase()}]
     })
     if(!student){
         throw new ApiError(404, "Student does not exists");
