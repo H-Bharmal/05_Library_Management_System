@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family: 'Poppins';
+    text-transform: capitalize;
+}
+.container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 50vh;
+
+}
+.heading{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+.quickLinks {
+    height: 100%;
+    /* padding: 20px; */
+    flex: 0.25;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.quickButtons h2{
+    float: left;
+    font-size: 20px;
+    margin: 30px;
+}
+
+.quickButtons ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quickButtons li {
+    /* display: inline-block; */
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.quickButtons button {
+    width: 150px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 5px auto;
+}
+
+.quickButtons button:hover {
+    background-color: #45a049;
+}
+
+.Status {
+    
+    flex : 0.65;
+    padding: 50px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+.tiles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.tiles div {
+    width: 250px;
+    height: 100px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.totalBooks label,
+.totalStudents label,
+.totalActiveIssues label,
+.totalFinePending label,
+.StudentsWithFine label,
+.TotalBooksDue label {
+    font-weight: bold;
+    line-break: normal;
+    
+}
+
+.Status label::before {
+    content: "\A"; /* This inserts a line break */
+    white-space: pre; /* This ensures the line break is respected */
+}
+.totalBooks,
+.totalStudents,
+.totalActiveIssues,
+.totalFinePending,
+.StudentsWithFine,
+.TotalBooksDue {
+    font-size: 16px;
+}

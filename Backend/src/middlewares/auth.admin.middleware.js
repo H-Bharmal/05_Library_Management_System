@@ -9,6 +9,7 @@ import { generateAccessAndRefreshToken } from "../controllers/admin.controller.j
 
 const verifyJWTAdmin =asyncHandler(async function(req, res, next){
     console.log("Verifying for authentic request - admin");
+    console.log("Cookies", req?.cookies);
     let incomingAccessToken = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
     let incomingRefreshToken = req.cookies?.refreshToken || req.header("Authorization")?.replace("Bearer ", "");
     

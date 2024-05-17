@@ -4,8 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - DashBoard</title>
+    <link rel="stylesheet" href="../Nav-Bar/navbar-css.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome, Admin !</h1>
+    <div id="navbar-placeholder"></div>
+    <div class="heading">
+        <h1>Welcome, <label id="name">Admin</label>!</h1>
+    </div>
+    <div class="container">
+        <div class="quickLinks">
+            <div class="quickButtons">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><button>Issue Book</button></li>
+                    <li><button>Renew Book</button></li>
+                    <li><button>Return Book</button></li>
+                    <li><button>Pay Fine</button></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="Status">
+            <h2>Quick Stats</h2>
+            <div class="tiles">
+                <div class="totalBooks"> Total Books<label id="totalBook">NA</label></div>
+                <div class="totalStudents">Students Registered<label id="totalStudents">NA</label></div>
+                <div class="totalActiveIssues">Active Issues<label id="totalActiveIssues">NA</label></div>
+                <div class="totalFinePending"> Total Fine Pending<label id="totalFinePending">NA</label> &#x20B9</div>
+                <div class="StudentsWithFine">Students With Fine<label id="StudentsWithFine">NA</label></div>
+                <div class="TotalBooksDue">Total Books Due<label id="TotalBooksDue">NA</label></div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="../Nav-Bar/navbar-script.js" type="module"></script>
+<script src="script.js" type="module"></script>
 </html>

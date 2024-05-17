@@ -22,8 +22,10 @@ async function updateProfileImages(imageUrl){
     if(!imageUrl){
         const response = await getProfilePicture();
         // console.log(response);
+        console.log("Response",response);
         imageUrl = response || "../../../Images/user.png";
     }
+    console.log("Response",imageUrl);
     // console.log(imageUrl);
     const profilePictureImage = document.getElementById("profile-picture-img")
     if(profilePictureImage) profilePictureImage.src = imageUrl ;

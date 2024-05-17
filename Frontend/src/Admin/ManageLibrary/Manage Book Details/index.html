@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Book Details</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    <!-- Features of Adding book via ISBN, Adding book manually, Deleting a book detail -->
+    <!-- Feature to add book -> Fetch details via isbn and confirm manually or add directly via isbn--> 
+    <div class="addBook">
+        <div class="left-addIsbn">
+            <div class="form" id="reqeust-form">
+                <h3>Add Via ISBN</h3>
+                <form>
+                    <input type="text" placeholder="ISBN-10" id="form-isbn10">
+                    <input type="text" placeholder="ISBN-13" id="form-isbn13">
+                    <button type="submit">Request Book</button>
+                </form>
+            </div>
+        </div>
+        <div class="right-manualDetails">
+            <!-- Here resides all the form data needed by book -->
+        </div>
+    </div>
+</body>
+</html>

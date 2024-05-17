@@ -2,6 +2,7 @@ import { ApiError } from "../utils/ApiError.js";
 import {Admin} from "../models/admin.model.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { cookieOptions } from "../constants.js";
 // This function is done by superUser only and hence registering this requires master key
 function isValidMasterKey(masterKey){
     if(masterKey == process.env.MASTER_KEY) return true ;
@@ -90,14 +91,10 @@ const loginAdmin = asyncHandler( async(req, res, next)=>{
 
     const loggedInAdmin = await Admin.findById(admin._id).select("-password -refreshToken");
 
-    const options = {
-        httpOnly : true,
-        secure : true,
-    }
 
     return res.status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
+    .cookie("accessToken", accessToken, cookieOptions)
+    .cookie("refreshToken", refreshToken, cookieOptions)
     .json(new ApiResponse(200, loggedInAdmin, "Logged In Successful !"));
 })
 
@@ -111,15 +108,16 @@ const logoutAdmin = asyncHandler( async(req, res, next)=>{
         $set : {refreshToken : "undefined"}
     }, {new : true})
 
-    const options = {
-        httpOnly : true,
-        secure : true,
-    }
-
     res.status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    .clearCookie("accessToken", cookieOptions)
+    .clearCookie("refreshToken", cookieOptions)
     .json(new ApiResponse(200,{}, "LogOut Successful"));
 })
 
-export {registerAdmin, loginAdmin, logoutAdmin, generateAccessAndRefreshToken}
+const getAdminDetails = asyncHandler( async(req, res)=>{
+    if(!req.admin) throw new ApiError(404,"Admin Not Found !");
+
+    return res.status(200).json(new ApiResponse(200,req.admin, "Admin Details"))
+})
+
+export {registerAdmin, loginAdmin, logoutAdmin, generateAccessAndRefreshToken, getAdminDetails}

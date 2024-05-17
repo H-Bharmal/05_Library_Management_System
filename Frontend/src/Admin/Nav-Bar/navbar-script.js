@@ -1,9 +1,8 @@
-import { notify } from "../../utils/notify.js";
-import { API_DOMAIN } from "../../constants.js";
-import { updateProfileImages } from "../../utils/updateProfiles.js";
+import {API_DOMAIN} from "../../constants.js"
+import {notify} from "../../utils/notify.js"
 
 async function fetchNavBar(){
-    const url = "../navbar/navbar.html";
+    const url = "../Nav-Bar/navbar.html";
     await fetch(url)
     .then(response=> response.text())
     .then(data =>{
@@ -13,23 +12,17 @@ async function fetchNavBar(){
     console.log("Script Loaded Successfully..");
 }
 
-// console.log("Starting navbar script");
-document.addEventListener("DOMContentLoaded",async function() {
+document.addEventListener('DOMContentLoaded', async (e)=>{
     await fetchNavBar();
-    document.getElementById('dropdown-profile-image')
-    .addEventListener('click', async (e)=>{
-        dropdown();
-    })
+    console.log("Navigation Bar Fetched");
+
     document.getElementById('logoutBtn').addEventListener('click', async (e)=>{
         await logout();
     })
-    console.log("Navbar - Loading Profile Images");
-    await updateProfileImages();
-});
-// fetchNavBar();
+})
 
 async function logout(){
-    const url = `${API_DOMAIN}/student/logout`
+    const url = `${API_DOMAIN}/admin/logout`
     const response = await fetch(url,
     {
         method : "POST",
@@ -43,8 +36,4 @@ async function logout(){
     else{
         notify("Something went Wrong !");
     }
-}
-
-function dropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
 }

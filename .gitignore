@@ -1,3 +1,4 @@
 node_modules
 .env
 ../Frontend/src/constants.js
+/Frontend/Images/login*

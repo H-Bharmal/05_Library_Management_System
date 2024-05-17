@@ -28,7 +28,7 @@ async function auth() {
     if(response.ok){
         console.log("Login successful");
         notify("Login Successful !");
-        window.location.assign("../Admin/Home Page/")
+        window.location.assign("../Admin/Home/")
     }
     else if(response.status >= 400 && response.status < 500){
         notify("Invalid Credentials", 'red');
