@@ -143,6 +143,10 @@ const countBooksAlreadyDue = asyncHandler( async(req, res, next)=>{
     // return res.status(200).json(new ApiResponse(200, {countBooksDue:response[0].count}, "Students with Fine Fetched !"));
 });
 
+const getAllInstances = asyncHandler(async(req, res)=>{
+    const response = await BookInstance.find({}).sort({title:1});
+    if(!response)throw new ApiError(500,"Could not fetch instances");
+    return res.status(200).json(new ApiResponse(200,response,"All Instances"))
+})
 
-
-export {totalBooksInLibrary, totalStudentsRegistered, totalActiveIssues, totalFinePending, countStudentsWithFine, countBooksAlreadyDue};
+export {totalBooksInLibrary, totalStudentsRegistered, totalActiveIssues, totalFinePending, countStudentsWithFine, countBooksAlreadyDue, getAllInstances};

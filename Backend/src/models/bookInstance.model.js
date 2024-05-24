@@ -43,13 +43,16 @@ const bookSchema = new mongoose.Schema({
 }, {timestamps:true});
 
 bookSchema.pre("save", async function(next){
-    const counter = await Counter.findOne({counter : "counter"})
+    if(this.bookNumber != 0) next();
+    else{
+        const counter = await Counter.findOne({counter : "counter"})
 
-    counter.bookInstanceCounter = counter.bookInstanceCounter+1;
-    // console.log(counter.bookInstanceCounter);
-    await counter.save({validateBeforeSave : false})
-    this.bookNumber = counter.bookInstanceCounter ;
-    next();
+        counter.bookInstanceCounter = counter.bookInstanceCounter+1;
+        // console.log(counter.bookInstanceCounter);
+        await counter.save({validateBeforeSave : false})
+        this.bookNumber = counter.bookInstanceCounter ;
+        next();
+    }
 })
 // bookSchema.plugin(autoIncrement.plugin, {
 //     model : 'Book',

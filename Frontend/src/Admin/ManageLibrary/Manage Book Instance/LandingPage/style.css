@@ -1,0 +1,105 @@
+.main-heading{
+    margin: 20px 20px;
+}
+.container{
+    margin:10px 20px;
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Book list styles */
+.bookList {
+    flex: 0.9;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.books {
+    width: 100%;
+    border-collapse: separate;
+}
+.books thead{
+    position: sticky;
+    top :0;
+}
+.books th, .books td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-transform: capitalize;
+}
+.books td img{
+    width: 60px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.books th {
+    background-color: #fdfdfd;
+}
+.books tbody p{
+    overflow-y: auto;
+    height: 150px;
+    width:200px;
+    padding:20px
+}
+.books tbody p:hover{
+    /* overflow-y:none; */
+    /* max-height: 300px; */
+    overflow-y: auto;
+    height: 150px; 
+    border-radius: 5px;
+    background-color: rgb(241, 241, 241);
+    font-size: 10px;
+    transform: scale(1.5);
+    transition: transform 0.5s ease, max-height 0.5s ease;
+}
+.books tbody p::-webkit-scrollbar {
+    width: 2px;
+    background: transparent;
+}
+
+.books tbody tr:nth-child(even) {
+    background-color: #f7f6f6;
+}
+.books tbody tr{
+    border-radius: 3px;
+}
+.books tbody tr:hover {
+    /* background-color: #ddd; */
+    /* transform: scale(1.005); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles */
+.books button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.books button:hover {
+    background-color: #45a049;
+}

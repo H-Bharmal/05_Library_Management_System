@@ -78,7 +78,7 @@ const loginAdmin = asyncHandler( async(req, res, next)=>{
 
     // check if user exists
     const admin = await Admin.findOne({
-        $or : [{email}, {mobileNumber : isNaN(mobileNumber) ? -1 : mobileNumber}, {adminId}]
+        $or : [{email}, {mobileNumber : (isNaN(mobileNumber) ? -1 : mobileNumber)}, {adminId}]
     })
 
     if(!admin) throw new ApiError(400, "Admin is not registered !")

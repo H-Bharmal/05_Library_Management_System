@@ -2,14 +2,20 @@
 <nav>
     <div class="topnav">
         <!-- <div class="navigation-items"> -->
-            <a href="../Home-Page/index.html" id="Home">Home</a>
+            <a href="../Home/index.html" id="Home">Home</a>
             <div class="ManageLibrary navbar-dropdown">
                 <button class="navbar-dropbtn">Manage Library
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="navbar-dropdown-content">
-                    <a href="#">Manage Book Details</a>
-                    <a href="#">Manage Book Instances</a>
+                    <a href="../ManageLibrary/Manage Book Details/" id="ManageBookDetails">Manage Book Details</a>
+                    <div class="navbar-dropdown-side">
+                        <a href="../ManageLibrary/Manage Book Instance/" id="ManageBookInstance" class="navbar-dropbtn-side">Manage Book Instances <i class="fa fa-caret-right"></i></a>
+                        <div class="navbar-dropdown-content-side">
+                            <a href="#" id="AddInstances">Add Book Instance</a>
+                            <a href="#" id="ModifyInstances">Modify-Delete Book Instance</a>
+                        </div>
+                    </div>    
                 </div>
             </div>
             <div class="Student navbar-dropdown">
@@ -53,10 +59,10 @@
                 <button>Search</button>
             </div>
         <div class="profile navbar-dropdown">
-            <img src="../../../Images/user.png" alt="profile image" class='navbar-dropbtn'>
+            <img src="../../../Images/user.png" alt="profile image" class='navbar-dropbtn' id="navbar-profile">
             <div class="navbar-dropdown-content" id="myDropdown">
-                <a href="../../Login/admin-login.html">Switch User</a>
-                <a href="../Profile settings/">Profile Settings</a>
+                <a href="../../Login/admin-login.html" id="switchUser">Switch User</a>
+                <a href="../Profile settings/" id="profileSettings">Profile Settings</a>
                 <button id="logoutBtn">Logout</button>
             </div>
         </div>

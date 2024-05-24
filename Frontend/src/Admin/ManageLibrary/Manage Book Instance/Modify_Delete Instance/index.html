@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Book Instances</title>
+    <link rel="stylesheet" href="../../../Nav-Bar/navbar-css.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <h1>Manage Book Instance</h1>
+    <div class="container">
+        <div class="left-addIsbn">
+            <div class="form" id="reqeust-form">
+                <h3>Search Via Book Number</h3>
+                <form>
+                    <input type="text" placeholder="bookNumber" id="form-bookNumber">
+                    <button id="SearchBook" type="submit">Search Book Instance</button>
+                    <button id="DeleteBook">Delete Book Instance</button>
+                </form>
+            </div>
+            
+        </div>
+        <div class="right-manualDetails">
+            <div class="container2">
+                <h3>Book Cover</h3>
+                <a href="#" id="book-title-link">
+                    <img src="" alt="Book Cover" id="book-cover">
+                </a>
+            </div>
+            <div class="left container2">
+                <h3>Description</h3>
+                <textarea placeholder="description" id="description"></textarea>
+            </div>
+            <div class="form container2">
+                <form id="book-data">
+                    <input type="number" required placeholder="bookNumber" id="bookNumberNew">
+                    <input type="text" placeholder="title" id="book-title">
+                    <input type="text" placeholder="authors" id="Author">
+                    <input type="text" placeholder="publisher" id="publisher">
+                    <input type="text" placeholder="categories" id="categories">
+                    <input type="text" placeholder="page-count" id="page-count">
+                    <input type="date" placeholder="Purchase-date" id="purchaseDate">
+                    <button type="submit" id="modifyBtn">Modify Instance</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" src="../../../Nav-Bar/navbar-script.js"></script>
+<script type="module" src="script.js"></script>
+</html>

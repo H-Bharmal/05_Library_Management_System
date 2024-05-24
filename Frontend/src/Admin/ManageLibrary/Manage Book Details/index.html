@@ -4,26 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Book Details</title>
+    <link rel="stylesheet" href="../../Nav-Bar/navbar-css.css">
     <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="navbar-placeholder"></div>
     <!-- Features of Adding book via ISBN, Adding book manually, Deleting a book detail -->
     <!-- Feature to add book -> Fetch details via isbn and confirm manually or add directly via isbn--> 
-    <div class="addBook">
+    <div class="container">
         <div class="left-addIsbn">
             <div class="form" id="reqeust-form">
-                <h3>Add Via ISBN</h3>
+                <h3>Search Via ISBN</h3>
                 <form>
                     <input type="text" placeholder="ISBN-10" id="form-isbn10">
                     <input type="text" placeholder="ISBN-13" id="form-isbn13">
-                    <button type="submit">Request Book</button>
+                    <button id="SearchBook" type="submit">Search Book</button>
+                    <button id="DeleteBook">Delete Book</button>
                 </form>
             </div>
         </div>
         <div class="right-manualDetails">
-            <!-- Here resides all the form data needed by book -->
+            <div class="container2">
+                <h3>Book Cover</h3>
+                <a href="#" id="book-title-link">
+                    <img src="" alt="Book Cover" id="book-cover">
+                </a>
+            </div>
+            <div class="left container2">
+                <h3>Description</h3>
+                <textarea placeholder="description" id="description"></textarea>
+            </div>
+            <div class="form container2">
+                <form id="book-data">
+                    <input type="text" required placeholder="authors" id="Author">
+                    <input type="text" required placeholder="title" id="book-title">
+                    <input type="text" required placeholder="publisher" id="publisher">
+                    <input type="text" required placeholder="categories" id="categories">
+                    <input type="text" required placeholder="page-count" id="page-count">
+                    <button type="submit" id="addBtn">Confirm & Add</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
+<script type="module" src="../../Nav-Bar/navbar-script.js"></script>
+<script type="module" src="script.js"></script>
 </html>
