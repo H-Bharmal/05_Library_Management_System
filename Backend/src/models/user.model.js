@@ -111,7 +111,7 @@ userSchema.statics.generateAccessToken = function(){
         )
 }
 userSchema.statics.changePassword = async function(currentPassword, newPassword){
-    // console.log("Inside userSchema changepassword method");
+    console.log("Inside userSchema changepassword method");
     // verify the passwords
     if(await this.isPasswordCorrect(currentPassword)){
         // Change the password

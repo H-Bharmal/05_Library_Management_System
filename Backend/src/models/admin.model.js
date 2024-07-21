@@ -28,5 +28,8 @@ adminSchema.methods.generateAccessToken = function(){
 adminSchema.methods.generateRefreshToken = function(){
     return userSchema.statics.generateRefreshToken.call(this);
 }
+adminSchema.methods.changePassword = async function(currentPassword, newPassword){
+    return await userSchema.statics.changePassword.call(this, currentPassword, newPassword);
+}
 
 export const Admin = mongoose.model("Admin", adminSchema);

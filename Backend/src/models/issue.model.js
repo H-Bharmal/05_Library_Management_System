@@ -58,14 +58,14 @@ issueSchema.methods.getFine = function(){
     const dateToday =new Date();
     const differenceMs = Math.abs(dateToday - dateIssue);
     const days = Math.ceil(differenceMs/(60*60*24*1000));
-    console.log(days);
-    console.log(dateToday.toLocaleString());
-    console.log(dateIssue.toLocaleString());
+    // console.log(days);
+    // console.log(dateToday.toLocaleString());
+    // console.log(dateIssue.toLocaleString());
     let fine = this.fine ;
     if(days > maxDaysBeforeRenew){
         fine += days - maxDaysBeforeRenew ;
     }
-    console.log("The fine is now :", fine)
+    // console.log("The fine is now :", fine)
     return fine ;
 }
 

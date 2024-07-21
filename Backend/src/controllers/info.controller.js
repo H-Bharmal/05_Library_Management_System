@@ -47,30 +47,21 @@ const totalActiveIssues = asyncHandler( async (req, res, next)=>{
 })
 
 const totalFinePending = asyncHandler( async (req, res, next)=>{
-    const response = await Issue.aggregate([
-        {
-            $match :{
-                $or : [{bookStatus : "Active"}, {bookStatus : "Fine Pending"}]
-            }
-        },
-        {
-            $group:{
-                _id:null,
-                total:{$sum : "$fine"}
-            }
-        },
-        {
-            $project:{
-                _id:0
-            }
-        }
-    ])
-
+    const response = await Issue.find({
+        $or : [
+            {bookStatus : "Active"},
+            {bookStatus : "Fine Pending"}
+        ]
+    })
+    let totalFine = 0;
+    response.forEach(item =>{
+        totalFine += item.getFine() ;
+    });
     if(!response) throw new ApiError(500,"Error Retriving Data from Database");
 
     // if(next != null){
         req.responseData = req.responseData || {};
-        req.responseData.totalFine = response[0].total ;
+        req.responseData.totalFine = totalFine ;
         next();
     // }
     // return res.status(200).json(new ApiResponse(200, {totalFine : response[0].total}, "Total Fine Fetched !"))

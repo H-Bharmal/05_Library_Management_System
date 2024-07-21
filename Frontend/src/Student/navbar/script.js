@@ -13,6 +13,7 @@ async function fetchNavBar(){
     console.log("Script Loaded Successfully..");
 }
 
+
 // console.log("Starting navbar script");
 document.addEventListener("DOMContentLoaded",async function() {
     await fetchNavBar();

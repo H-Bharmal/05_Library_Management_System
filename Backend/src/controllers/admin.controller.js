@@ -3,6 +3,8 @@ import {Admin} from "../models/admin.model.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { cookieOptions } from "../constants.js";
+import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloudinary.js";
+
 // This function is done by superUser only and hence registering this requires master key
 function isValidMasterKey(masterKey){
     if(masterKey == process.env.MASTER_KEY) return true ;
@@ -120,4 +122,129 @@ const getAdminDetails = asyncHandler( async(req, res)=>{
     return res.status(200).json(new ApiResponse(200,req.admin, "Admin Details"))
 })
 
-export {registerAdmin, loginAdmin, logoutAdmin, generateAccessAndRefreshToken, getAdminDetails}
+const changePassword = asyncHandler( async (req, res)=>{
+    // Check if user is logged in
+    // Check if password provided is same as password in database
+    // If yes, change the password
+    console.log("Changing Password..");
+    const user = req.admin ;
+    // console.log(req.body);
+    const currentPassword = req.body.currentPassword ;
+    const newPassword = req.body.newPassword?.trim() ;
+    if(!currentPassword) throw new ApiError(400,"Credentials Required !");
+    if(!newPassword || newPassword==="") throw new ApiError(400,"No password Supplied !");
+    if(!user) throw new ApiError(401,"Unauthorized access");
+
+    const admin =await Admin.findById(user._id);
+    if(!admin) throw new ApiError(500,"Error fetching admin from database");
+
+    if(! await admin.changePassword(currentPassword, newPassword)){
+        throw new ApiError(400,"Invalid Credentials!");
+    }
+    res.status(200)
+    .json(new ApiResponse(200,{},"Password Changed Success!"));
+})
+
+const updateInformation = asyncHandler( async (req, res)=>{
+    // Expects image, mobileNumber, Email
+    console.log("Stating to update information");
+    const imagePath = req.file?.path ;
+    const mobile = req.body.mobile ;
+    const email = req.body.email ;
+    // console.log(req.body);
+    if(!imagePath && !mobile && !email) throw new ApiError(400, "No Information to Update");
+    if(mobile?.trim() =='' || email?.trim() =='') throw new ApiError(400, "Fields Required !");
+    
+    const admin = req.admin ;
+    
+    if(admin.email == email && admin.mobileNumber == mobile && !imagePath) throw new ApiError(400, "No modifications done !");
+    
+    let imagePathPresent = true ;
+    console.log("Image path : ",imagePath);
+    if(!imagePath) imagePathPresent = false ;
+    console.log("Image path present: ",imagePathPresent);
+
+    let imageOnCloudinary ;
+    if(imagePathPresent){
+        imageOnCloudinary =await uploadOnCloudinary(imagePath);
+
+        if(!imageOnCloudinary) throw new ApiError(500, "Error uploading image !");
+        
+        // console.log(imageOnCloudinary);
+    }
+
+    const currentImage = admin.profilePicture ;
+    let updatedImage = null;
+    let updatedMobile=null, updatedEmail=null ;
+    if(imagePathPresent){
+        updatedImage = imageOnCloudinary.secure_url || currentImage  ;
+    }
+    else{
+        updatedImage = currentImage ;
+    }
+    if(mobile && mobile?.trim() !=='null'){
+        updatedMobile = mobile || admin.mobileNumber ;
+    }
+    else{
+        updatedMobile = admin.mobileNumber ;
+    }
+    if(email && email?.trim() !=='null'){
+        updatedEmail = email || admin.email ;
+    }
+    else{
+        updatedEmail = admin.email ;
+    }
+
+    const updatedStudent = await Admin.findByIdAndUpdate(admin._id,{
+        $set : {
+            profilePicture : updatedImage,   
+            mobileNumber : updatedMobile,
+            email : updatedEmail
+        }
+    }, {new : true})?.select("-password -refreshToken");
+
+    if(!updatedStudent) throw new ApiError(500, "Something went wrong while updating the database");
+
+    if(updatedImage != currentImage){
+        // Delete the old image from the cloudinary database
+        const isImageDeleted = await deleteFromCloudinary(currentImage);
+        if(isImageDeleted) console.log("Old Image deleted from cloudinary");
+        if(!isImageDeleted) console.log("Old Image could not be deleted");
+    }
+    // console.log(imagePath);
+    // console.log(mobile);
+    // console.log(email);
+    return res.status(200).json(new ApiResponse(200,updatedStudent, "admin Information updated successfully"));
+})
+
+const removeProfilePicture = asyncHandler(async(req, res)=>{
+    // Just the admin is enough
+    const admin = req.admin ;
+    if(!admin) throw new ApiError(401, "Unauthorized Request !")
+
+    if(!admin.profilePicture || admin.profilePicture?.trim() == '') throw new ApiError(404,"No profile picture found");
+
+    const isImageDeleted = await deleteFromCloudinary(admin.profilePicture);
+    if(!isImageDeleted) throw new ApiError(500, "Something went wrong while deleting the image");
+
+    const updatedAdmin = await Admin.findByIdAndUpdate(admin._id, {
+        $set : {
+            profilePicture : null
+        }
+    }, {new : true})?.select("-password -refreshToken");
+
+    if(!updatedAdmin) throw new ApiError(500, "Something went wrong while updating database");
+
+    return res.status(200).json(new ApiResponse(200,updatedAdmin, "Profile Removed Successfully"))
+})
+
+const getProfilePicture = asyncHandler(async (req,res)=>{
+    const admin = req.admin ;
+    if(!admin.profilePicture || admin.profilePicture?.trim() =='') throw new ApiError(404,"No profile Picture Found !");
+
+    return res.status(200).json(new ApiResponse(200,{profilePicture : admin.profilePicture}));
+})
+
+export {registerAdmin, loginAdmin, logoutAdmin, generateAccessAndRefreshToken, getAdminDetails, changePassword, 
+    updateInformation, removeProfilePicture, getProfilePicture
+}

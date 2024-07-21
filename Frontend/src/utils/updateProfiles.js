@@ -1,7 +1,10 @@
 import { API_DOMAIN } from "../constants.js";
 
-async function getProfilePicture(){
-    const url = `${API_DOMAIN}/student/getStudentProfilePicture`;
+async function getProfilePicture(isAdmin){
+    let url = `${API_DOMAIN}/student/getStudentProfilePicture`;
+    if(isAdmin){
+        url = `${API_DOMAIN}/admin/getAdminProfilePicture`;
+    }
     const response = await fetch(url,{
         method : "GET",
         headers : {
@@ -17,10 +20,10 @@ async function getProfilePicture(){
         return null ;
     }
 }
-async function updateProfileImages(imageUrl){
+async function updateProfileImages(imageUrl, isAdmin){
     // console.log("Entering update prfileimages function");
     if(!imageUrl){
-        const response = await getProfilePicture();
+        const response = await getProfilePicture(isAdmin);
         // console.log(response);
         console.log("Response",response);
         imageUrl = response || "../../../Images/user.png";
